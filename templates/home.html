@@ -21,7 +21,11 @@
         </div>
     </section>
     <h1>New Post</h1>
+<<<<<<< HEAD
     <form method="post" action="{0}">
+=======
+    <form method="post" action = "{0}" enctype="multipart/form-data">
+>>>>>>> b775d7192b26f72f4c7961d157ad9bc163df4c52
       <label>
         Upload Image
         <input type="file" name="image" accept="image/gif, image/jpeg, image/png">
@@ -35,10 +39,14 @@
       <button type="submit">Post!</button>
       <form>
     <h1>Past Posts</h1>
-    {% for post in all_posts %}
-      <img>{{ image_inputted }}</img>
-      <p>Tags:</p>
-      <p> {{ tag1_inputted }}, {{ tag2_inputted }}, {{ tag3_inputted }}</p>
-    {% endfor %}
-  </body>
+    {% if all_posts !=  None %}
+
+      {% for post in all_posts %}
+        <img src = {{ post.image_url }}>
+        <p> {{ post.tag1 }}, {{ post.tag2 }}, {{ post.tag3 }}</p>
+      {% endfor %}
+    {% else %}
+      <h1> No Posts made yet </h1>
+    {% endif %}
+    </body>
 </html>

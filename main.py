@@ -18,9 +18,6 @@ the_jinja_env = jinja2.Environment(
     autoescape=True)
 
 
-
-
-
 class MainPage(BaseHandler):
     @user_required
     def get(self):
@@ -30,10 +27,6 @@ class MainPage(BaseHandler):
               'logged_in': True
             }
         self.render_template('home.html',params)
-
-
-
-
 
 # the app configuration section
 config = {

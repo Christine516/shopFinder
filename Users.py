@@ -5,7 +5,6 @@ from google.appengine.ext import ndb
 from webapp2_extras import security
 from google.appengine.api import images
 from google.appengine.ext import ndb
-from College import College
 from google.appengine.api import images
 import webapp2
 
@@ -15,7 +14,7 @@ class User(webapp2_extras.appengine.auth.models.User):
     logged_in = ndb.BooleanProperty()
     first_name =ndb.StringProperty()
     last_name =ndb.StringProperty()
-    posts = ndb.KeyProperty(Post,repeated=True)
+    # posts = ndb.KeyProperty(Post,repeated=True)
 
 
 

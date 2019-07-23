@@ -5,3 +5,7 @@
 .navBar_options: hover{
   color: #708090;
 }
+
+li{
+  float:left;
+}

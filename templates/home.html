@@ -11,7 +11,7 @@
       <li><a class = "navBar_options" href = "/sign_up">Sign Up</a></li>
       <li><a class = "navBar_options" href = "/Login">Sign In</a></li>
     </div>
-    <h>New Post</h1>
+    <h1>New Post</h1>
     <form method="post" action="/">
       <label>
         Upload Image
@@ -25,5 +25,11 @@
       </label><br/>
       <button type="submit">Post!</button>
       <form>
+    <h1>Past Posts</h1>
+    {% for post in all_posts %}
+      <img>{{ image_inputted }}</img>
+      <p>Tags:</p>
+      <p> {{ tag1_inputted }}, {{ tag2_inputted }}, {{ tag3_inputted }}</p>
+    {% endfor %}
   </body>
 </html>

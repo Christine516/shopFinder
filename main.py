@@ -35,7 +35,8 @@ class MainPage(BaseHandler):
         tag2_inputted = self.request.get("tag 2")
         tag3_inputted = self.request.get("tag 3")
 
-        post = Post("image"=image_uploaded, "tag1" = tag1_inputted, "tag2" = tag2_inputted, "tag3" = tag3_inputted)
+        post = Post(tag1 = tag1_inputted, tag2 = tag2_inputted, tag3 = tag3_inputted)
+        post.image_uploaded = image_uploaded
         query=Post.query()
         all_posts=query.fetch()
         all_posts.append(post)
@@ -47,7 +48,7 @@ class MainPage(BaseHandler):
         "tag2_inputted":tag2_inputted,
         "tag3_inputted":tag3_inputted,
         }
-        template = jinja_env.get_template('templates/home.html')
+        template = the_jinja_env.get_template('templates/home.html')
         self.response.write(template.render(template_vars))
 # the app configuration section
 config = {

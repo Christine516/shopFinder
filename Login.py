@@ -88,8 +88,6 @@ class LoginPage(BaseHandler):
         username = self.request.get('username')
         password = self.request.get('password')
         remember_var =  self.request.get('remember')
-        print("Password is " + password)
-        print("%s is the username " %(username))
         try:
           u = self.auth.get_user_by_password(username, password, remember=True)
           self.redirect(self.uri_for('home'))

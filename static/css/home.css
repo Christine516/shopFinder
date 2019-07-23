@@ -1,0 +1,7 @@
+#navBar{
+  border: 1px solid red;
+}
+
+.navBar_options: hover{
+  color: #708090;
+}

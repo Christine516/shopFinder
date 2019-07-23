@@ -77,13 +77,6 @@ class BaseHandler(webapp2.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates', view_filename)
     self.response.out.write(template.render(path, params))
 
-  def display_message(self, message):
-    """Utility function to display a template with a simple message."""
-    params = {
-      'message': message
-    }
-    self.render_template('message.html', params)
-
   # this is needed for webapp2 sessions to work
   def dispatch(self):
       # Get a session store for this request.
@@ -104,11 +97,7 @@ class LogOutPage(BaseHandler):
 
 class LoginPage(BaseHandler):
     def error_login(self, error):
-        params = {
-          'bad_login': 'Yes',
-          'bad_response': error
-        }
-        self.render_template('login.html', params)
+        self.render_template('login.html')
 
     def get(self):
         self.render_template('login.html')
@@ -116,17 +105,11 @@ class LoginPage(BaseHandler):
     def post(self):
         username = self.request.get('username')
         password = self.request.get('password')
-        remember_var =  self.request.get('remember')
-        print("Password is " + password)
-        print("%s is the username " %(username))
         try:
-          u = self.auth.get_user_by_password(username, password, remember=True)
+          u = self.auth.get_user_by_password(username, password)
           self.redirect(self.uri_for('home'))
         except (InvalidAuthIdError, InvalidPasswordError) as e:
-          if "InvalidPasswordError" in str(type(e)):
-            self.error_login("Wrong password")
-          else:
-            self.error_login("Wrong username")
+          self.render_template('login.html')
 
 
 class SignUpPage(BaseHandler):
@@ -139,22 +122,13 @@ class SignUpPage(BaseHandler):
         username_var = self.request.get('username')
         password_var = self.request.get('password')
 
-        unique_properties = []'username','password']
+        unique_properties = ['username','password']
         user_data = self.user_model.create_user(username_var,unique_properties,username=username_var,
                                                 password_raw=password_var,logged_in=True,first_name = first_name_var,
                                                 last_name=last_name_var
                                                 )
         if not user_data[0]:
-            error = {
-                'bad_login' : 'Yes',
-                'bad_response' : 'Duplicates for %s ' % (user_data[1])
-            }
-            return self.render_template('signup.html',error)
+            return self.render_template('signup.html')
         user = user_data[1]
-        if remember_var == "on":
-            print("Remember function says checkbox is on")
-            self.auth.set_session(self.auth.store.user_to_dict(user), remember=True)
-        else:
-            print("Remember function says checkbox is off")
-            self.auth.set_session(self.auth.store.user_to_dict(user), remember=False)
+        self.auth.set_session(self.auth.store.user_to_dict(user), remember=False)
         self.redirect(self.uri_for('home'))

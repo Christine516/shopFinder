@@ -1,3 +1,32 @@
+from webapp2_extras import auth
+from webapp2_extras import sessions
+from google.appengine.ext.webapp import template
+from google.appengine.ext import blobstore
+from google.appengine.ext.webapp import blobstore_handlers
+from webapp2_extras.auth import InvalidAuthIdError
+from webapp2_extras.auth import InvalidPasswordError
+from google.appengine.api import images
+import webapp2
+import jinja2
+import os
+
+def user_required(handler):
+  """
+    Decorator that checks if there's a user associated with the current session.
+    Will also fail if there's no session present.
+  """
+  def check_login(self, *args, **kwargs):
+    auth = self.auth
+    print("Reached check login")
+    if not auth.get_user_by_session():
+        print("Check login doesn't work")
+        self.redirect(self.uri_for('login'), abort=True)
+    else:
+        print("Check login works")
+        return handler(self, *args, **kwargs)
+
+  return check_login
+
 class BaseHandler(webapp2.RequestHandler):
   @webapp2.cached_property
   def auth(self):
@@ -79,15 +108,17 @@ class LoginPage(BaseHandler):
           'bad_login': 'Yes',
           'bad_response': error
         }
-        self.render_template('Login.html', params)
+        self.render_template('login.html', params)
 
     def get(self):
-        self.render_template('Login.html')
+        self.render_template('login.html')
 
     def post(self):
         username = self.request.get('username')
         password = self.request.get('password')
         remember_var =  self.request.get('remember')
+        print("Password is " + password)
+        print("%s is the username " %(username))
         try:
           u = self.auth.get_user_by_password(username, password, remember=True)
           self.redirect(self.uri_for('home'))
@@ -100,17 +131,16 @@ class LoginPage(BaseHandler):
 
 class SignUpPage(BaseHandler):
     def get(self):
-        self.render_template('Signup.html')
+        self.render_template('signup.html')
 
     def post(self):
         first_name_var = self.request.get('first_name')
         last_name_var = self.request.get('last_name')
         username_var = self.request.get('username')
         password_var = self.request.get('password')
-        remember_var = self.request.get('remember')
-        email_var = self.request.get('email')
-        unique_properties = ['email','username','password']
-        user_data = self.user_model.create_user(username_var,unique_properties,username=username_var,email=email_var,
+
+        unique_properties = []'username','password']
+        user_data = self.user_model.create_user(username_var,unique_properties,username=username_var,
                                                 password_raw=password_var,logged_in=True,first_name = first_name_var,
                                                 last_name=last_name_var
                                                 )
@@ -119,7 +149,7 @@ class SignUpPage(BaseHandler):
                 'bad_login' : 'Yes',
                 'bad_response' : 'Duplicates for %s ' % (user_data[1])
             }
-            return self.render_template('Signup.html',error)
+            return self.render_template('signup.html',error)
         user = user_data[1]
         if remember_var == "on":
             print("Remember function says checkbox is on")

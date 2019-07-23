@@ -29,7 +29,7 @@ class MainPage(BaseHandler):
               'first_name': self.user.first_name,
               'logged_in': True
             }
-        self.render_template('index.html',params)
+        self.render_template('home.html',params)
 
 
 
@@ -39,7 +39,7 @@ class MainPage(BaseHandler):
 config = {
   'webapp2_extras.auth': {
     'user_model': 'Users.User',
-    'user_attributes': ['username','password','email','first_name','last_name']
+    'user_attributes': ['username','password','first_name','last_name']
   },
   'webapp2_extras.sessions': {
     'secret_key': '\x0cWh\xd4|\xfd\xe6G\xba\x06\xf7)\xcf\xd32\x14\xc4\xbe\x8e\x10=\x87-r'

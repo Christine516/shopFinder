@@ -11,6 +11,7 @@ from webapp2_extras.auth import InvalidAuthIdError
 from webapp2_extras.auth import InvalidPasswordError
 from google.appengine.api import images
 from Login import *
+from posts import *
 # the handler section
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -28,6 +29,26 @@ class MainPage(BaseHandler):
             }
         self.render_template('home.html',params)
 
+    def post(self):
+        image_uploaded = self.request.get("image")
+        tag1_inputted = self.request.get("tag 1")
+        tag2_inputted = self.request.get("tag 2")
+        tag3_inputted = self.request.get("tag 3")
+
+        post = Post("image"=image_uploaded, "tag1" = tag1_inputted, "tag2" = tag2_inputted, "tag3" = tag3_inputted)
+        query=Post.query()
+        all_posts=query.fetch()
+        all_posts.append(post)
+        post.put()
+
+        template_vars = {
+        "image_uploaded":image_uploaded,
+        "tag1_inputted":tag1_inputted,
+        "tag2_inputted":tag2_inputted,
+        "tag3_inputted":tag3_inputted,
+        }
+        template = jinja_env.get_template('templates/home.html')
+        self.response.write(template.render(template_vars))
 # the app configuration section
 config = {
   'webapp2_extras.auth': {

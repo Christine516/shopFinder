@@ -8,4 +8,5 @@
 
 li{
   float:left;
+  list-style-type: none;
 }

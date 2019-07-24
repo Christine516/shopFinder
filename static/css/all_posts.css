@@ -1,0 +1,73 @@
+#header {
+  background-color:#FAB8A7;
+  text-align: center;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  margin-top: 0px
+}
+
+#signin {
+  text-align:center;
+}
+
+body {
+  background-color: #FFEDE8;
+}
+
+h1 {
+  font-size: 50px;
+  color: #635C56;
+  font-family: arial black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  font-size: 25px;
+  color: #635C56;
+  font-family: arial;
+}
+
+h2 {
+  font-size:32px;
+  margin-top: 0px;
+  font-family: arial;
+  color: #212529
+}
+
+#outerWrap{
+  display:flex;
+  position: relative;
+  z-index: 0;
+  height:100px;
+}
+
+#navBar{
+  flex: 1;
+  position: absolute;
+  z-index: 1;
+  height:25%;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+  background-color: #9C8E8A;
+}
+
+#space{
+  flex-grow: 1;
+}
+
+
+.navBar_options: hover{
+  color: #708090;
+}
+
+.navBar_options{
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}

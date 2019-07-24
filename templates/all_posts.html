@@ -3,8 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+  <link rel="stylesheet" href="/static/css/all_posts.css">
   </head>
   <body>
+    <section id=header>
+      <h1>SHOP FINDER</h1>
+      <h2>A Community of Shoppers Finding One Item at a Time</h2>
+    </section>
+    <section id = "outerWrap">
+        <div id = "navBar">
+          <a class = "navBar_options" href = "/">Home</a>
+          <div>
+            <a class = "navBar_options" href = "/Logout">Log Out</a>
+        </div>
+    </section>
     <h1>Explore All Posts!</h1>
     {% if all_posts != None %}
       {% for post in all_posts %}

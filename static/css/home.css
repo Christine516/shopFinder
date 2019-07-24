@@ -1,3 +1,19 @@
+body {
+  background-color: #FFEDE8;
+}
+
+h1 {
+  font-size: 50px;
+  color: #635C56;
+  font-family: arial black;
+}
+
+p {
+  font-size: 25px;
+  color: #635C56;
+  font-family: arial;
+}
+
 #outerWrap{
   display:flex;
   position: relative;
@@ -16,21 +32,20 @@
   flex-direction: row;
   justify-content: space-between;
   display: flex;
+  background-color: #9C8E8A;
 }
 
 #space{
   flex-grow: 1;
 }
 
-#homeTab: hover{
-  color: #708090;
-}
 
 .navBar_options: hover{
   color: #708090;
 }
 
 .navBar_options{
+  color: white;
   padding-left: 10px;
   padding-right: 10px;
 }

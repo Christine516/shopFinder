@@ -13,8 +13,8 @@
   <body>
     <section id = "outerWrap">
         <div id = "navBar">
-          <a id = "homeTab" href = "/">Home</a>
-          <a href = "/allUserPosts">Explore</a>
+          <a class = "navBar_options" href = "/">Home</a>
+          <a class = "navBar_options" href = "/allUserPosts">Explore</a>
           <div>
             <a class = "navBar_options" href = "/sign_up">Sign Up</a>
             <a class = "navBar_options" href = "/Login">Sign In</a>
@@ -49,7 +49,7 @@
         {% endfor %}
       {% endfor %}
     {% else %}
-      <h1> No Posts made yet </h1>
+      <p> No Posts made yet </p>
     {% endif %}
     </body>
 </html>

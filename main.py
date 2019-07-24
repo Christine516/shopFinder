@@ -37,6 +37,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         self.response.out.write(template.render("templates/home.html", params).format(upload_url))
 
 
+
     def post(self):
         # self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
         # self.response.headers.add_header("Expires","0")

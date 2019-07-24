@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Explore All Posts!</h1>
+    {% if all_posts != None %}
+      {% for post in all_posts %}
+        <img src = {{ post.image_url }}>
+        {% for tag in post.tags %}
+          <p> {{ tag }}</p>
+          {% endfor %}
+        {% endfor %}
+    {% else %}
+      <h1>Sorry, there are no posts at the moment.</h1>
+    {% endif %}
+  </body>
+</html>

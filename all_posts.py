@@ -18,12 +18,12 @@ the_jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class allUserPosts(BaseHandler):
+class allPosts(BaseHandler):
     def get(self):
         query=Post.query()
-        all_user_posts=query.fetch()
+        all_posts=query.fetch()
         template_vars = {
-        "all_user_posts":all_user_posts,
+        "all_posts":all_posts,
         }
-        template = the_jinja_env.get_template('templates/all_users_Posts.html')
+        template = the_jinja_env.get_template('templates/all_posts.html')
         self.response.write(template.render(template_vars))

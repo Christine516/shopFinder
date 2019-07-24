@@ -12,6 +12,8 @@ from webapp2_extras.auth import InvalidPasswordError
 from google.appengine.api import images
 from Login import *
 from posts import *
+from searchbytag import *
+from Users import *
 # the handler section
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -43,13 +45,13 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         post.image = upload.key()
         post.image_url = images.get_serving_url(post.image)
 
-        query=Post.query()
-        all_posts=query.fetch()
-        all_posts.append(post)
+        query=Post.query(Post.user==self.user.key)
+        all_user_posts=query.fetch()
+        all_user_posts.append(post)
         post.put()
 
         template_vars = {
-            "all_posts":all_posts,
+            "all_user_posts":all_user_posts,
         }
         upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
@@ -68,4 +70,5 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/Logout', handler=LogOutPage, name='logout'),
     webapp2.Route('/Login', handler=LoginPage, name='login'),
     webapp2.Route('/sign_up', handler=SignUpPage, name='SignUp'),
+    webapp2.Route('/search-results', handler=SearchResults, name='search-results')
 ], debug=True,config=config)

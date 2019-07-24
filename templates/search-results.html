@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Search Results</h1>
+    {% if results !=  None %}
+      {% for result in results %}
+        <img src = {{ result.image_url }}>
+        {% for tag in result.tags %}
+          <p> {{ tag }} </p>
+        {% endfor %}
+      {% endfor %}
+    {% else %}
+      <h1>Sorry, No Posts Match Your Search</h1>
+    {% endif %}
+  </body>
+</html>

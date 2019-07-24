@@ -4,10 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <script type="text/javascript" src="/static/js/trial.js" ></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title></title>
+    <title> Home Page</title>
     <link rel="stylesheet" href="/static/css/home.css">
   </head>
   <body>
@@ -33,13 +32,38 @@
         <input type="text" name="tag3" value="">
       </label><br/>
       <button type="submit">Post!</button>
-      <form>
+    </form>
     <h1>Past Posts</h1>
     {% if all_posts !=  None %}
 
       {% for post in all_posts %}
-        <img src = {{ post.image_url }}>
-        <p> {{ post.tag1 }}, {{ post.tag2 }}, {{ post.tag3 }}</p>
+        <div>
+          <img src = {{ post.image_url }}>
+          <p>Tags: {{ post.tag1 }}, {{ post.tag2 }}, {{ post.tag3 }}</p>
+          <p>User: {{ post.user_name}} </p>
+          <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
+          <button  onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
+
+          {% if post.comments != None %}
+            {% for comment in post.comments %}
+              <div>
+              <p>User:{{ comment.user_name }}</p>
+               <p>Likes:{{ comment.likes }} </p>
+               <p>{{ comment.content }} </p>
+               <!-- {% if comment != None %}
+                 {% for subcomment in comment.comments %}
+                   <div>
+     `              <p>User:{{ subcomment.user_name }}</p>
+                    <p>Likes:{{ subcomment.likes }} </p>
+                    <p>{{ subcomment.content }} </p>
+                   </div>
+                 {% endfor %}
+            {% endif %} -->
+              </div>
+            {% endfor %}
+          {% endif %}
+          <button id  = {{ post.key.id  }} onclick="LikePost({{ post.key.id }})" >Likes: {{ post.likes }} </button>
+      </div>
       {% endfor %}
     {% else %}
       <h1> No Posts made yet </h1>

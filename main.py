@@ -28,7 +28,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
               'logged_in': True
             }
             upload_url = blobstore.create_upload_url('/')
-        self.response.out.write(template.render("templates/home.html", params).format(upload_url))
+        self.response.out.write(template.render("templates/home.html", params).format(upload_url).strip())
 
 
     def post(self):

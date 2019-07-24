@@ -4,9 +4,7 @@ from google.appengine.api import images
 class Post (ndb.Model):
     image = ndb.BlobKeyProperty()
     image_url = ndb.StringProperty()
-    tag1 = ndb.StringProperty()
-    tag2 = ndb.StringProperty()
-    tag3 = ndb.StringProperty()
+    tags = ndb.StringProperty(repeated=True)
 
     def create_post_photo_url(self):
         return images.get_serving_url(self.image)

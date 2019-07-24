@@ -37,11 +37,9 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
         self.response.headers.add_header("Expires","0")
         upload = self.get_uploads()[0]
-        tag1_inputted = self.request.get("tag1")
-        tag2_inputted = self.request.get("tag2")
-        tag3_inputted = self.request.get("tag3")
+        tags = [self.request.get("tag1"), self.request.get("tag2"), self.request.get("tag3")]
 
-        post = Post(tag1 = tag1_inputted, tag2 = tag2_inputted, tag3 = tag3_inputted)
+        post = Post(tags=tags)
         post.image = upload.key()
         post.image_url = images.get_serving_url(post.image)
 

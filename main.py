@@ -29,9 +29,19 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
         self.response.headers.add_header("Expires","0")
         if self.user.logged_in:
+
+            query=Post.query().order(-Post.amount_comments)
+            print(query)
+            popular_posts=query.fetch(limit = 5)
+            print(popular_posts)
             params = {
-              'first_name': self.user.first_name,
-              'logged_in': True
+                "popularPost1": popular_posts[0],
+                "popularPost2": popular_posts[1],
+                "popularPost3": popular_posts[2],
+                "popularPost4": popular_posts[3],
+                "popularPost5": popular_posts[4],
+                "first_name": self.user.first_name,
+                "logged_in": True
             }
             upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", params).format(upload_url))
@@ -74,9 +84,10 @@ class CommentPostPage(BaseHandler):
         post_key = self.request.get("post")
         print(post_key)
         post = Post.get_by_id(int(post_key))
-        comment = Comment(user=self.user.key, user_name =self.user.username,content=comment_content)
+        comment = Comment(user=self.user.key, user_name=self.user.username,content=comment_content)
         comment.put()
         post.comments.append(comment)
+        post.amount_comments = len(post.comments)
         post.put()
         upload_url = blobstore.create_upload_url('/')
         query = Post.query(Post.user_name == self.user.username)

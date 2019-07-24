@@ -3,14 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+  <link rel="stylesheet" href="/static/css/signup.css">
   </head>
   <body>
-    <form action="/sign_up" method="post">
+    <section id=header>
+      <h1>SHOP FINDER</h1>
+      <h2>A Community of Shoppers Finding One Item at a Time</h2>
+    </section>
+    <form id=createuser action="/sign_up" method="post">
       <h1>Create User</h1>
-      First Name:<input type="text" name="First_Name" value="First Name">
-      Last Name: <input type="text" name="Last_Name" value="Last Name">
-      Username: <input type="text" name="username" value="username">
-      Password: <input type="password" name="password" value="password">
+      First Name:<input type="text" name="First_Name" value="First Name"></br>
+      Last Name: <input type="text" name="Last_Name" value="Last Name"></br>
+      Username: <input type="text" name="username" value="username"></br>
+      Password: <input type="password" name="password" value="password"></br>
                 <input type="submit" value="Login">
     </form>
   </body>

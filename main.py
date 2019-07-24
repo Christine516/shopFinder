@@ -44,14 +44,14 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         upload = self.get_uploads()[0]
         tags = [self.request.get("tag1"), self.request.get("tag2"), self.request.get("tag3")]
 
-        post = Post(tags=tags)
+        post = Post(tags=tags,user=self.user.key,user_name = self.user.username)
         post.image = upload.key()
         post.image_url = images.get_serving_url(post.image)
-
+        post.put()
         query=Post.query(Post.user==self.user.key)
         all_user_posts=query.fetch()
         all_user_posts.append(post)
-        post.put()
+
 
         template_vars = {
             "all_posts":all_user_posts,

@@ -8,8 +8,8 @@ class Post (ndb.Model):
     comments = ndb.StructuredProperty(Comment,repeated=True)
     likes = ndb.IntegerProperty(default = 0)
     tags = ndb.StringProperty(repeated=True)
-    user= ndb.KeyProperty(User)
-    user_name=ndb.StringProperty()
+    user= ndb.KeyProperty(User,required=True)
+    user_name=ndb.StringProperty(required=True)
 
     def create_post_photo_url(self):
         return images.get_serving_url(self.image)

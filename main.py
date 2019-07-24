@@ -22,6 +22,8 @@ the_jinja_env = jinja2.Environment(
 class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     @user_required
     def get(self):
+        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        self.response.headers.add_header("Expires","0")
         if self.user.logged_in:
             params = {
               'first_name': self.user.first_name,
@@ -32,6 +34,8 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
 
 
     def post(self):
+        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        self.response.headers.add_header("Expires","0")
         upload = self.get_uploads()[0]
         tag1_inputted = self.request.get("tag1")
         tag2_inputted = self.request.get("tag2")
@@ -47,10 +51,10 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         post.put()
 
         template_vars = {
-        "all_posts":all_posts,
+            "all_posts":all_posts,
         }
-        template = the_jinja_env.get_template('templates/home.html')
-        self.response.write(template.render(template_vars))
+        upload_url = blobstore.create_upload_url('/')
+        self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
 # the app configuration section
 config = {
   'webapp2_extras.auth': {

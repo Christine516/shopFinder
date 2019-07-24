@@ -11,11 +11,15 @@
     <link rel="stylesheet" href="/static/css/home.css">
   </head>
   <body>
-    <div id = "navBar">
-      <li><a class = "navBar_options" href = "/">Home</a></li>
-      <li><a class = "navBar_options" href = "/sign_up">Sign Up</a></li>
-      <li><a class = "navBar_options" href = "/Login">Sign In</a></li>
-    </div>
+    <section id = "outerWrap">
+        <div id = "navBar">
+          <a id = "homeTab" href = "/">Home</a>
+          <div>
+            <a class = "navBar_options" href = "/sign_up">Sign Up</a>
+            <a class = "navBar_options" href = "/Login">Sign In</a>
+          </div>
+        </div>
+    </section>
     <h1>New Post</h1>
     <form method="post" action = "{0}" enctype="multipart/form-data">
       <label>

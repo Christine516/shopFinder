@@ -43,10 +43,7 @@ class MainPage(BaseHandler):
         post.put()
 
         template_vars = {
-        "image_uploaded":image_uploaded,
-        "tag1_inputted":tag1_inputted,
-        "tag2_inputted":tag2_inputted,
-        "tag3_inputted":tag3_inputted,
+            "all_posts":all_posts,  
         }
         template = the_jinja_env.get_template('templates/home.html')
         self.response.write(template.render(template_vars))

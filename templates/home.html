@@ -27,9 +27,9 @@
       <form>
     <h1>Past Posts</h1>
     {% for post in all_posts %}
-      <img>{{ image_inputted }}</img>
+      <img src="{{ create_post_photo_url }}">
       <p>Tags:</p>
-      <p> {{ tag1_inputted }}, {{ tag2_inputted }}, {{ tag3_inputted }}</p>
+      <p> {{ posts.tag1_inputted }}, {{ posts.tag2_inputted }}, {{ posts.tag3_inputted }}</p>
     {% endfor %}
   </body>
 </html>

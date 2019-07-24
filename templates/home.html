@@ -48,7 +48,9 @@
       {% for post in all_posts %}
         <div>
           <img src = {{ post.image_url }}>
-          <p>Tags: {{ post.tag1 }}, {{ post.tag2 }}, {{ post.tag3 }}</p>
+          {%  for tag in post.tags %}
+            <p>Tags: {{ tag }}</p>
+          {% endfor %}
           <p>User: {{ post.user_name}} </p>
           <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
           <button  onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>

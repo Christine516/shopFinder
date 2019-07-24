@@ -34,12 +34,12 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
               'logged_in': True
             }
             upload_url = blobstore.create_upload_url('/')
-        self.response.out.write(template.render("templates/home.html", params).format(upload_url).strip())
+        self.response.out.write(template.render("templates/home.html", params).format(upload_url))
 
 
     def post(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires","0")
+        # self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        # self.response.headers.add_header("Expires","0")
         upload = self.get_uploads()[0]
         tags = [self.request.get("tag1"), self.request.get("tag2"), self.request.get("tag3")]
 
@@ -53,7 +53,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         post.put()
 
         template_vars = {
-            "all_user_posts":all_user_posts,
+            "all_posts":all_user_posts,
         }
         upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
@@ -105,7 +105,7 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/Login', handler=LoginPage, name='login'),
     webapp2.Route('/sign_up', handler=SignUpPage, name='SignUp'),
     webapp2.Route('/allPosts', handler=allPosts, name='all-Posts'),
-    webapp2.Route('/search-results', handler=SearchResults, name='search-results')
+    webapp2.Route('/search-results', handler=SearchResults, name='search-results'),
     webapp2.Route('/comment', handler=CommentPostPage, name='CommentPost'),
     webapp2.Route('/Like', handler=LikePost, name='LikePost'),
 ], debug=True,config=config)

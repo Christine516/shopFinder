@@ -4,8 +4,22 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <link rel="stylesheet" href="/static/css/search-results.css">
   <body>
-    <h1>Search Results</h1>
+    <section id=header>
+      <h1>SHOP FINDER</h1>
+      <h2>A Community of Shoppers Finding One Item at a Time</h2>
+    </section>
+    <section id = "outerWrap">
+        <div id = "navBar">
+          <a class = "navBar_options" href = "/">Home</a>
+          <a class = "navBar_options" href = "/allPosts">Explore</a>
+          <div>
+            <a class = "navBar_options" href = "/Logout">Log Out</a>
+          </div>
+        </div>
+    </section>
+    <h1>Search Results:</h1>
     {% if results !=  None %}
       {% for result in results %}
         <img src = {{ result.image_url }}>

@@ -1,0 +1,30 @@
+#header {
+  background-color:#FAB8A7;
+  text-align: center;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  padding-top: 0px
+}
+
+body {
+  background-color: #FFEDE8;
+}
+
+h1 {
+  font-size: 50px;
+  color: #635C56;
+  font-family: arial black;
+}
+
+p {
+  font-size: 25px;
+  color: #635C56;
+  font-family: arial;
+}
+
+h2 {
+  font-size:32px
+}

@@ -4,12 +4,19 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <link rel="stylesheet" href="/static/css/login.css">
   <body>
-    <form action="/Login" method="post">
-      Username: <input type="text" name="username" value="username">
-      Password: <input type="password" name="password" value="password">
-                <input type="submit" value="Login">
-    </form>
-    <a href = "/sign_up"> If your not a current user, sign up </a>
+    <section id=header>
+      <h1>SHOP FINDER</h1>
+      <h2>A Community of Shoppers Finding One Item at a Time</h2>
+    </section>
+    <section>
+      <form action="/Login" method="post">
+        Username: <input type="text" name="username" value="username">
+        Password: <input type="password" name="password" value="password">
+                  <input type="submit" value="Login">
+      </form>
+    <a href = "/sign_up"> If you are not a current user, please sign up! </a>
+    </section>
   </body>
 </html>

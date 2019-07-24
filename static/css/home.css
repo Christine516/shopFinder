@@ -1,9 +1,34 @@
+#header {
+  background-color:#FAB8A7;
+  text-align: center;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+body {
+  background-color: #FFEDE8;
+}
+
+h1 {
+  font-size: 50px;
+  color: #635C56;
+  font-family: arial black;
+}
+
+p {
+  font-size: 25px;
+  color: #635C56;
+  font-family: arial;
+}
+
 #outerWrap{
   display:flex;
   position: relative;
   z-index: 0;
   height:500px;
-  border: 5px solid green;
 }
 
 #navBar{
@@ -12,25 +37,23 @@
   z-index: 1;
   height:5%;
   width: 100%;
-  border: 1px solid red;
   flex-direction: row;
   justify-content: space-between;
   display: flex;
+  background-color: #9C8E8A;
 }
 
 #space{
   flex-grow: 1;
 }
 
-#homeTab: hover{
-  color: #708090;
-}
 
 .navBar_options: hover{
   color: #708090;
 }
 
 .navBar_options{
+  color: white;
   padding-left: 10px;
   padding-right: 10px;
 }

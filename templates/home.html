@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title></title>
     <link rel="stylesheet" href="/static/css/home.css">
   </head>
   <body>
-    <div id = "navBar">
-      <li><a class = "navBar_options" href = "/">Home</a></li>
-      <li><a class = "navBar_options" href = "/sign_up">Sign Up</a></li>
-      <li><a class = "navBar_options" href = "/Login">Sign In</a></li>
-    </div>
+    <section id = "outerWrap">
+        <div id = "navBar">
+          <a id = "homeTab" href = "/">Home</a>
+          <div>
+            <a class = "navBar_options" href = "/sign_up">Sign Up</a>
+            <a class = "navBar_options" href = "/Login">Sign In</a>
+          </div>
+        </div>
+    </section>
     <h1>New Post</h1>
-    <form method="post" action="/">
+<<<<<<< HEAD
+    <form method="post" action="{0}">
+=======
+    <form method="post" action = "{0}" enctype="multipart/form-data">
+>>>>>>> b775d7192b26f72f4c7961d157ad9bc163df4c52
       <label>
         Upload Image
         <input type="file" name="image" accept="image/gif, image/jpeg, image/png">
@@ -26,10 +39,23 @@
       <button type="submit">Post!</button>
       <form>
     <h1>Past Posts</h1>
+<<<<<<< HEAD
     {% for post in all_posts %}
       <img src="{{ create_post_photo_url }}">
       <p>Tags:</p>
       <p> {{ posts.tag1_inputted }}, {{ posts.tag2_inputted }}, {{ posts.tag3_inputted }}</p>
     {% endfor %}
   </body>
+=======
+    {% if all_posts !=  None %}
+
+      {% for post in all_posts %}
+        <img src = {{ post.image_url }}>
+        <p> {{ post.tag1 }}, {{ post.tag2 }}, {{ post.tag3 }}</p>
+      {% endfor %}
+    {% else %}
+      <h1> No Posts made yet </h1>
+    {% endif %}
+    </body>
+>>>>>>> 0dea26d116666321c02bc6855a2583a2f9ee8193
 </html>

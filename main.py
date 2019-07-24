@@ -19,7 +19,7 @@ the_jinja_env = jinja2.Environment(
     autoescape=True)
 
 
-class MainPage(BaseHandler):
+class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     @user_required
     def get(self):
         if self.user.logged_in:
@@ -27,23 +27,31 @@ class MainPage(BaseHandler):
               'first_name': self.user.first_name,
               'logged_in': True
             }
-        self.render_template('home.html',params)
+            upload_url = blobstore.create_upload_url('/')
+        self.response.out.write(template.render("templates/home.html", params).format(upload_url))
+
 
     def post(self):
-        image_uploaded = self.request.get("image")
-        tag1_inputted = self.request.get("tag 1")
-        tag2_inputted = self.request.get("tag 2")
-        tag3_inputted = self.request.get("tag 3")
+        upload = self.get_uploads()[0]
+        tag1_inputted = self.request.get("tag1")
+        tag2_inputted = self.request.get("tag2")
+        tag3_inputted = self.request.get("tag3")
 
         post = Post(tag1 = tag1_inputted, tag2 = tag2_inputted, tag3 = tag3_inputted)
-        post.image_uploaded = image_uploaded
+        post.image = upload.key()
+        post.image_url = images.get_serving_url(post.image)
+
         query=Post.query()
         all_posts=query.fetch()
         all_posts.append(post)
         post.put()
 
         template_vars = {
+<<<<<<< HEAD
             "all_posts":all_posts,  
+=======
+        "all_posts":all_posts,
+>>>>>>> 0dea26d116666321c02bc6855a2583a2f9ee8193
         }
         template = the_jinja_env.get_template('templates/home.html')
         self.response.write(template.render(template_vars))

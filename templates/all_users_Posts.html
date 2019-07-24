@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Explore All Posts!</h1>
+    {% for post in all_user_posts %}
+      <img src = {{ post.image_url }}>
+      <p> {{ post.tag1 }}, {{ post.tag2 }}, {{ post.tag3 }}</p>
+    {% endfor %}
+  </body>
+</html>

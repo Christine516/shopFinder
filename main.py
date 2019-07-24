@@ -10,6 +10,7 @@ from google.appengine.ext.webapp import blobstore_handlers
 from webapp2_extras.auth import InvalidAuthIdError
 from webapp2_extras.auth import InvalidPasswordError
 from google.appengine.api import images
+from all_users_Posts import *
 from Login import *
 from posts import *
 # the handler section
@@ -66,4 +67,5 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/Logout', handler=LogOutPage, name='logout'),
     webapp2.Route('/Login', handler=LoginPage, name='login'),
     webapp2.Route('/sign_up', handler=SignUpPage, name='SignUp'),
+    webapp2.Route('/allUserPosts', handler=allUserPosts, name='all posts'),
 ], debug=True,config=config)

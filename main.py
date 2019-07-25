@@ -35,19 +35,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             print(query)
             popular_posts=query.fetch(limit = 6)
             print(popular_posts)
-<<<<<<< HEAD
-            params = {
-                "popularPost1": popular_posts[0],
-                "popularPost2": popular_posts[1],
-                "popularPost3": popular_posts[2],
-                "popularPost4": popular_posts[3],
-                "popularPost5": popular_posts[4],
-                "popularPost6": popular_posts[5],
-                "first_name": self.user.first_name,
-                "logged_in": True
-            }
-=======
-            if len(popular_posts) > 5:
+            if len(popular_posts) > 6:
                 query = Post.query(Post.user == self.user.key)
                 all_user_posts = query.fetch()
                 print(all_user_posts)
@@ -57,6 +45,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                     "popularPost3": popular_posts[2],
                     "popularPost4": popular_posts[3],
                     "popularPost5": popular_posts[4],
+                    "popularPost6": popular_posts[5],
                     "first_name": self.user.first_name,
                     "all_posts": all_user_posts,
                     "logged_in": True
@@ -70,7 +59,6 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                     "all_posts": all_user_posts,
                     "logged_in": True
                 }
->>>>>>> 9d7f5e4173ab6d0a10e763571e50195eba3fd6dd
             upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", params).format(upload_url))
 

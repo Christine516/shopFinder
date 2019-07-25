@@ -60,8 +60,9 @@ p {
 
 .homeSections{
   text-align: center;
-  margin: 20px;
-  margin-top: 50px;
+  margin: none;
+  margin-top: none;
+  font-family: arial;
 }
 
 .forms{
@@ -131,15 +132,15 @@ form{
   align-content: center;
   position:flex;
   width: 400px;
-  background-color: #C6C4CC !important;
+  background-color: #FFD7C9 !important;
 }
 
 .cardcontainer {
   display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 15px 15px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 50px 15px;
     vertical-align: top;
-    justify-items: top;
+    justify-items: center;
 }
 
 .userbox {
@@ -164,4 +165,13 @@ form{
   color: #A5A7DE;
   font-family: arial;
   margin-top: 12px;
+}
+
+.pastpostscontainer{
+  background-image: url(https://www.designbolts.com/wp-content/uploads/2013/02/Cute-Grey-Tilable-Pattern-For-Website-Background.jpg);
+  /* background-size: cover; */
+}
+
+.middle {
+  background-color: #FFF0EA;
 }

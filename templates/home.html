@@ -38,6 +38,7 @@
         <img class = "popularPhotos" src={{popularPost6.create_post_photo_url}} alt="{{popularPost6.user_name}}'s post'">
       </section>
     <div id = "searchAndPost">
+    <div class=middle>
       <div>
         <h1 class = "homeSections">Search by Tag</h1>
         <div class = "forms">
@@ -66,6 +67,7 @@
         </div>
       </div>
     </div>
+    <div class = pastpostscontainer>
     <h1 class = "homeSections">Past Posts</h1>
     <div class= "cardcontainer">
     {% if all_posts !=  None %}
@@ -119,5 +121,6 @@
       <h1> No Posts made yet </h1>
     {% endif %}
   </div>
+</div>
     </body>
 </html>

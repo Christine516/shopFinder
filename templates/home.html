@@ -82,7 +82,7 @@
           </div>
           <form method = "post" action = "/">
               <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
-              <button  class="btn btn-primary" onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
+              <button class="btn btn-primary" onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
           </form>
           {% if post.comments != None %}
             {% for comment in post.comments %}

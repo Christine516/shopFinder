@@ -86,7 +86,23 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             post.image_url = images.get_serving_url(post.image)
             post.put()
             all_user_posts.append(post)
-
+            if len(popular_posts) > 5:
+                template_vars = {
+                    "popularPost1": popular_posts[0],
+                    "popularPost2": popular_posts[1],
+                    "popularPost3": popular_posts[2],
+                    "popularPost4": popular_posts[3],
+                    "popularPost5": popular_posts[4],
+                    "popularPost6": popular_posts[5],
+                    "all_posts":all_user_posts,
+                    "user": self.user
+                }
+            else:
+                template_vars = {
+                    "all_posts":all_user_posts,
+                    "user": self.user
+                }
+        else:
             if len(popular_posts) > 5:
                 template_vars = {
                     "popularPost1": popular_posts[0],

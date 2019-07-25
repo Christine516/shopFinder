@@ -10,12 +10,13 @@ from google.appengine.ext.webapp import blobstore_handlers
 from webapp2_extras.auth import InvalidAuthIdError
 from webapp2_extras.auth import InvalidPasswordError
 from google.appengine.api import images
-from all_posts import *
+from all_posts import allPosts
 from Login import *
 from posts import *
 from searchbytag import *
 from Users import *
 from Comment import *
+from Like import *
 from time import sleep
 # the handler section
 the_jinja_env = jinja2.Environment(
@@ -48,6 +49,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                     "popularPost6": popular_posts[5],
                     "first_name": self.user.first_name,
                     "all_posts": all_user_posts,
+                    "user": self.user,
                     "logged_in": True
                 }
             else:
@@ -57,7 +59,8 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                 params = {
                     "first_name": self.user.first_name,
                     "all_posts": all_user_posts,
-                    "logged_in": True
+                    "logged_in": True,
+                    "user": self.user
                 }
             upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", params).format(upload_url))
@@ -82,6 +85,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
 
         template_vars = {
             "all_posts":all_user_posts,
+            "user": self.user
         }
         upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
@@ -90,8 +94,21 @@ class LikePost(BaseHandler):
     def post(self):
         post_key = self.request.get("post")
         post = Post.get_by_id(int(post_key))
-        post.likes +=1
+        like = LikePost(self.user.key,)
+        post.likes_list.append(like)
+        post.likes += 1
         post.put()
+        upload_url = blobstore.create_upload_url('/')
+        query = Post.query(Post.user_name == self.user.username)
+        all_posts = query.fetch()
+        template_vars = {
+            "all_posts": all_posts,
+            "user": self.user
+        }
+        self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
+
+
+
 
 class CommentPostPage(BaseHandler):
     @user_required
@@ -112,6 +129,7 @@ class CommentPostPage(BaseHandler):
         all_posts = query.fetch()
         template_vars = {
             "all_posts": all_posts,
+            "user":self.user
         }
         print(self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url)))
 

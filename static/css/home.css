@@ -153,3 +153,7 @@ form{
   background-color: #A5A7DE;
   border: none;
 }
+
+.comments {
+  border:black solid 1px;
+}

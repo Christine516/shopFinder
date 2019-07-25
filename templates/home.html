@@ -27,34 +27,43 @@
         </div>
       </div>
       <section id = "popularPhotos">
-        <img class = "popularPhotos" src={{popularPost1.create_post_photo_url }} alt="{{popularPost1.user_name}}'s post">
-        <img class = "popularPhotos" src={{popularPost2.create_post_photo_url }} alt="{{popularPost2.user_name}}'s post">
-        <img class = "popularPhotos" src={{popularPost3.create_post_photo_url }} alt="{{popularPost3.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost1.create_post_photo_url}} alt="{{popularPost1.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost2.create_post_photo_url}} alt="{{popularPost2.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost3.create_post_photo_url}} alt="{{popularPost3.user_name}}'s post">
         <img class = "popularPhotos" src={{popularPost4.create_post_photo_url}} alt="{{popularPost4.user_name}}'s post">
-        <img class = "popularPhotos" src={{popularPost5.create_post_photo_url }} alt="{{popularPost5.user_name}}'s post">
-        <img class = "popularPhotos" src={{popularPost6.create_post_photo_url }} alt="{{popularPost6.user_name}}'s post'">
+        <img class = "popularPhotos" src={{popularPost5.create_post_photo_url}} alt="{{popularPost5.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost6.create_post_photo_url}} alt="{{popularPost6.user_name}}'s post'">
       </section>
-    <!-- </section> -->
-    <h1>Search by Tag</h1>
-    <form method="post" action = "/search-results">
-      <input type="text" name="search" placeholder="Search...">
-      <button type="submit">Search!</button>
-    </form>
-    <h1>New Post</h1>
-    <form method="post" action = "{0}" enctype="multipart/form-data">
-      <label>
-        Upload Image
-        <input type="file" name="image" accept="image/gif, image/jpeg, image/png">
-      </label><br/>
-      <label>
-        Tags:
-        <input type="text" name="tag1" value="">
-        <input type="text" name="tag2" value="">
-        <input type="text" name="tag3" value="">
-      </label><br/>
-      <button type="submit">Post!</button>
-    </form>
-    <h1>Past Posts</h1>
+    <div id = "searchAndPost">
+      <div>
+        <h1 class = "homeSections">Search by Tag</h1>
+        <div class = "forms">
+          <form method="post" action = "/search-results">
+            <input type="text" name="search" placeholder="Search...">
+            <button type="submit">Search!</button>
+          </form>
+        </div>
+      </div>
+      <div>
+        <h1 class = "homeSections">New Post</h1>
+        <div>
+          <form method="post" action = "{0}" enctype="multipart/form-data">
+            <label>
+              Upload Image
+              <input type="file" name="image" accept="image/gif, image/jpeg, image/png">
+            </label><br/>
+            <label>
+              Tags:
+              <input type="text" name="tag1" value="">
+              <input type="text" name="tag2" value="">
+              <input type="text" name="tag3" value="">
+            </label><br/>
+            <button type="submit">Post!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <h1 class = "homeSections">Past Posts</h1>
     {% if all_posts !=  None %}
       {% for post in all_posts %}
         <div class = "card">

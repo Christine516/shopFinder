@@ -36,7 +36,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             print(query)
             popular_posts=query.fetch(limit = 6)
             print(popular_posts)
-            if len(popular_posts) > 6:
+            if len(popular_posts) > 5:
                 query = Post.query(Post.user == self.user.key)
                 all_user_posts = query.fetch()
                 print(all_user_posts)

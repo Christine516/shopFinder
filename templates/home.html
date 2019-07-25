@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src="/static/js/trial.js" ></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title> Home Page</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+     <title> Home Page</title>
     <link rel="stylesheet" href="/static/css/home.css">
   </head>
   <body>
@@ -53,15 +57,15 @@
     <h1>Past Posts</h1>
     {% if all_posts !=  None %}
       {% for post in all_posts %}
-        <div>
-          <img src = {{ post.image_url }}>
+        <div class = "card">
+          <img class="card-img-top" style = "width:18rem;height:20rem" src = {{ post.image_url }}>
+          <h1 class = "card-title">User: {{ post.user_name}} </h1>
           {%  for tag in post.tags %}
-            <p>Tags: {{ tag }}</p>
+            <p class = "card-text" style = "float:left">Tags: {{ tag }}</p>
           {% endfor %}
-          <p>User: {{ post.user_name}} </p>
           <form method = "post" action = "/">
               <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
-              <button  onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
+              <button  class="btn btn-primary" onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
           </form>
           {% if post.comments != None %}
             {% for comment in post.comments %}
@@ -72,16 +76,20 @@
                <!-- {% if comment != None %}
                  {% for subcomment in comment.comments %}
                    <div>
-     `              <p>User:{{ subcomment.user_name }}</p>
-                    <p>Likes:{{ subcomment.likes }} </p>
-                    <p>{{ subcomment.content }} </p>
+     `              <p>User:{{ subcomment.get.user_name }}</p>
+                    <p>Likes:{{ subcomment.get.likes }} </p>
+                    <p>{{ subcomment.get.content }} </p>
                    </div>
                  {% endfor %}
             {% endif %} -->
               </div>
             {% endfor %}
           {% endif %}
-          <button id  = {{ post.key.id  }} onclick="LikePost({{ post.key.id }})" >Likes: {{ post.likes }} </button>
+          {% if user in post.users_liked %}
+              <h1 class = "card-text">Likes:{{ post.likes }}</h1>
+          {%  else %}
+             <button  class="btn btn-primary" id  = {{ post.key.id  }} onclick="LikePost({{ post.key.id }})" >Likes: {{ post.likes }} </button>
+          {%  endif %}
       </div>
       {% endfor %}
     {% else %}

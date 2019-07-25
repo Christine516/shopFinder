@@ -1,30 +1,43 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
-background-size: cover;
+background-size: 50%;
 background-repeat: no-repeat;
-height: 100%;
+height: 25%;
 font-family: 'Numans', sans-serif;
+}
+
+.card-footer {
+  background-color: #A5A7DE;
+}
+.video {
+  height: 200px;
 }
 
 .container{
 height: 100%;
 align-content: center;
+position: absolute;
+top: 0;
+left: 0;
 }
 
 .card{
 height: 33rem;
 margin-top: auto;
 margin-bottom: auto;
+align-content: center;
+postion:flex;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
+top: 6rem;
+left: 8rem;
 }
 
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
-color: #FFC312;
+color: #A5A7DE;
 }
 
 .social_icon span:hover{
@@ -44,7 +57,7 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: #FFC312;
+background-color: #A5A7DE;
 color: black;
 border:0 !important;
 }
@@ -69,7 +82,7 @@ margin-right: 5px;
 
 .login_btn{
 color: black;
-background-color: #FFC312;
+background-color: #A5A7DE;
 width: 100px;
 }
 .active {
@@ -89,7 +102,7 @@ margin-left: 4px;
 }
 
 #header {
-  background-color:#FAB8A7;
+  background-color:white;
   text-align: center;
   text-shadow:
 		-1px -1px 0 #000,
@@ -103,13 +116,10 @@ margin-left: 4px;
   text-align:center;
 }
 
-body {
-  background-color: #FFEDE8;
-}
 
 h1 {
   font-size: 50px;
-  color: #635C56;
+  color: #A5A7DE;
   font-family: arial black;
   margin-top: 0px;
   margin-bottom: 0px;

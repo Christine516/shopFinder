@@ -28,8 +28,7 @@ the_jinja_env = jinja2.Environment(
 class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     @user_required
     def get(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires","0")
+        #
         if self.user.logged_in:
 
             query=Post.query().order(-Post.amount_comments)
@@ -152,7 +151,7 @@ class CreateProfilePage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
         self.user.brand = brand
         self.user.gender = gender
         self.user.put()
-        self.redirect_to(self.uri_for('home'))
+        self.render_template("home.html")
 
 # the app configuration section
 config = {

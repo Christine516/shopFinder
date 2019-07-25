@@ -16,7 +16,7 @@
   </head>
   <body>
 <div class="container">
-    	<div class="d-flex justify-content-center h-100">
+    	<div class="d-flex justify-content-center h-100">1
     		<div class="card" style = "width:40rem">
     			<div class="card-header">
     				<h3>Hey {{first_name}} , let me know a few things about you </h3>
@@ -27,31 +27,18 @@
     				</div>
     			</div>
     			<div class="card-body">
-    				<form class="btn float-left" action="{0}" method="POST" enctype="multipart/form-data">
-                        <div class="file-field ">
-                            <div class="btn btn-primary btn-sm float-left">
-                              <span>What do you look like?</span>
-                              <input type="file">
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="input-group form-group">
-    						<div class="input-group-prepend">
-    							<span class="input-group-text"><i class="fas fa-key"></i></span>
-    						</div>
-    						<input type="text" class="form-control" name = "Gender" placeholder="Are you a boy or a girl?">
-    					</div>
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="text" class="form-control" name = "Brand" placeholder="What brand do you like?">
-                        </div>
-                        <div class="form-group">
-    						<input type="submit" value="Login" class="btn float-right login_btn">
-    					</div>
-                    </form>
+    				<form method="post" action = "{0}" enctype="multipart/form-data">
+                    <label>
+                      Upload Image
+                      <input type="file" name="image" accept="image/gif, image/jpeg, image/png">
+                    </label><br/>
+                    <label>
+
+                      What's your favorite brand?<input type="text" name="Brand" value="">
+                     What's your gender? <input type="text" name="Gender" value="">
+                    </label><br/>
+                    <button type="submit">Post!</button>
+          </form>
     			</div>
     		</div>
     	</div>

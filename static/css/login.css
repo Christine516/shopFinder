@@ -49,12 +49,8 @@ align-content: center;
 postion:flex;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
-<<<<<<< HEAD
-top: 10%;
-=======
 top: 20%;
 left: 43%;
->>>>>>> a2776ae5e6ac439a0d3e1817297a05ee9d63a768
 }
 /* .main-container{
 display: flex;

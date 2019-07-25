@@ -83,7 +83,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             post.image_url = images.get_serving_url(post.image)
             post.put()
             all_user_posts.append(post)
-<<<<<<< HEAD
+
             if len(popular_posts) > 5:
                 template_vars = {
                     "popularPost1": popular_posts[0],
@@ -100,13 +100,6 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                     "all_posts":all_user_posts,
                     "user": self.user
                 }
-=======
-
-        template_vars = {
-            "all_posts":all_user_posts,
-            "user": self.user,
-        }
->>>>>>> a30936806424df3e56f0a3907d1fb56fd9f8abcf
         upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
 class LikePost(BaseHandler):

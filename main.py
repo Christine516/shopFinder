@@ -16,6 +16,7 @@ from posts import *
 from searchbytag import *
 from Users import *
 from Comment import *
+from time import sleep
 # the handler section
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -34,6 +35,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             print(query)
             popular_posts=query.fetch(limit = 6)
             print(popular_posts)
+<<<<<<< HEAD
             params = {
                 "popularPost1": popular_posts[0],
                 "popularPost2": popular_posts[1],
@@ -44,6 +46,31 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                 "first_name": self.user.first_name,
                 "logged_in": True
             }
+=======
+            if len(popular_posts) > 5:
+                query = Post.query(Post.user == self.user.key)
+                all_user_posts = query.fetch()
+                print(all_user_posts)
+                params = {
+                    "popularPost1": popular_posts[0],
+                    "popularPost2": popular_posts[1],
+                    "popularPost3": popular_posts[2],
+                    "popularPost4": popular_posts[3],
+                    "popularPost5": popular_posts[4],
+                    "first_name": self.user.first_name,
+                    "all_posts": all_user_posts,
+                    "logged_in": True
+                }
+            else:
+                query = Post.query(Post.user == self.user.key)
+                all_user_posts = query.fetch()
+                print(all_user_posts)
+                params = {
+                    "first_name": self.user.first_name,
+                    "all_posts": all_user_posts,
+                    "logged_in": True
+                }
+>>>>>>> 9d7f5e4173ab6d0a10e763571e50195eba3fd6dd
             upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", params).format(upload_url))
 
@@ -52,17 +79,18 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
         # self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
         # self.response.headers.add_header("Expires","0")
-        upload = self.get_uploads()[0]
-        tags = [self.request.get("tag1"), self.request.get("tag2"), self.request.get("tag3")]
+        uploads = self.get_uploads()
+        query = Post.query(Post.user == self.user.key)
+        all_user_posts = query.fetch()
+        if uploads:
+            upload = uploads[0]
+            tags = [self.request.get("tag1"), self.request.get("tag2"), self.request.get("tag3")]
 
-        post = Post(tags=tags,user=self.user.key,user_name = self.user.username)
-        post.image = upload.key()
-        post.image_url = images.get_serving_url(post.image)
-        post.put()
-        query=Post.query(Post.user==self.user.key)
-        all_user_posts=query.fetch()
-        all_user_posts.append(post)
-
+            post = Post(tags=tags,user=self.user.key,user_name = self.user.username)
+            post.image = upload.key()
+            post.image_url = images.get_serving_url(post.image)
+            post.put()
+            all_user_posts.append(post)
 
         template_vars = {
             "all_posts":all_user_posts,
@@ -90,13 +118,14 @@ class CommentPostPage(BaseHandler):
         post.comments.append(comment)
         post.amount_comments = len(post.comments)
         post.put()
+        sleep(0.05)
         upload_url = blobstore.create_upload_url('/')
         query = Post.query(Post.user_name == self.user.username)
         all_posts = query.fetch()
         template_vars = {
             "all_posts": all_posts,
         }
-        self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
+        print(self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url)))
 
 
 

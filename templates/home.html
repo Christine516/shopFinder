@@ -59,9 +59,10 @@
             <p>Tags: {{ tag }}</p>
           {% endfor %}
           <p>User: {{ post.user_name}} </p>
-          <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
-          <button  onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
-
+          <form method = "post" action = "/">
+              <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
+              <button  onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
+          </form>
           {% if post.comments != None %}
             {% for comment in post.comments %}
               <div>

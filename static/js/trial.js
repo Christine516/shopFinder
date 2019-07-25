@@ -20,7 +20,7 @@ function LikePost(post_key) {
 }
 function CommentPost(post_key) {
   var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "/comment", true);
+  xhttp.open("POST", "/comment", false);
   var content=document.getElementById("Input"+post_key).value;
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("post=" + post_key +"&comment="+content);

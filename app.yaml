@@ -1,7 +1,7 @@
 runtime: python27
 api_version: 1
 threadsafe: true
-
+cloudsql-instance:
 handlers:
 - url: /static
   static_dir: static
@@ -13,3 +13,4 @@ libraries:
   version: latest
 - name: webapp2
   version: "2.5.1"
+

@@ -135,8 +135,21 @@ form{
 }
 
 .cardcontainer {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  grid-template-columns: auto;
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px 15px;
+    vertical-align: top;
+    justify-items: top;
+}
+
+.userbox {
+  border: black solid 1px;
+}
+
+.tags {
+}
+
+.btn {
+  background-color: #A5A7DE;
+  border: none;
 }

@@ -3,14 +3,29 @@
 html,body{
 background-size: 50%;
 background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
+height: 25%;
 font-family: 'Numans', sans-serif;
 }
-#main-container{
-  width: 100%;
-                height: 100%;
+.vidcontainer {
+width: 100%;
+height: 150%;
+position: absolute;
+padding:0;
+margin:0;
+left: 0px;
+top: 0px;
+z-index: -1000;
+overflow:hidden;
 }
+
+.video {
+  min-height: 200%;
+  min-width:100%;
+  position:absolute;
+  bottom:0;
+  left:0;
+}
+
 .card-footer {
   background-color: #A5A7DE;
 }
@@ -71,24 +86,7 @@ outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
 
 }
-@media
-    only screen and (max-device-width : 600px) and (-webkit-max-device-pixel-ratio: 1),
-    only screen and (max-device-width : 600px) and (        max-device-pixel-ratio: 1) {
 
-     .bg-image-wedding {
-       background-image: url(img/photo-wedding_600x400.jpg);
-     }
-}
-
-/* example media query for retina ipad and up */
-@media
-    only screen and (min-device-width : 768px) and (-webkit-min-device-pixel-ratio: 1.5),
-    only screen and (min-device-width : 768px) and (        min-device-pixel-ratio: 1.5) {
-
-      .bg-image-wedding {
-        background-image: url(img/photo-wedding_1200x800@1.5x.jpg);
-      }
-}
 .remember{
 color: white;
 }

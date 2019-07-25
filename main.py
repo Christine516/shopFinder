@@ -85,7 +85,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
 
         template_vars = {
             "all_posts":all_user_posts,
-            "user": self.user
+            "user": self.user,
         }
         upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))

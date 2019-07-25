@@ -33,26 +33,30 @@ overflow:hidden;
   height: 100%;
 }
 
-/* .container{
+.container{
 height: 100%;
 align-content: center;
 position: absolute;
 top: 0;
 left: 0;
-} */
+}
 
 .card{
 height: 33rem;
-margin-top: auto;
+margin-top: 12.5%;
 margin-bottom: auto;
 align-content: center;
-position:flex;
-width: 25rem;
+postion:flex;
+width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
+<<<<<<< HEAD
 top: 10%;
+=======
+top: 20%;
+left: 43%;
+>>>>>>> a2776ae5e6ac439a0d3e1817297a05ee9d63a768
 }
-
-.main-container{
+/* .main-container{
 display: flex;
 justify-content: center;
 align-items: center;
@@ -61,7 +65,7 @@ align-items: center;
 display: flex;
 justify-content: center;
 align-items: center;
-}
+} */
 
 .social_icon span{
 font-size: 60px;

@@ -33,13 +33,13 @@ overflow:hidden;
   height: 200px;
 }
 
-.container{
+/* .container{
 height: 100%;
 align-content: center;
 position: absolute;
 top: 0;
 left: 0;
-}
+} */
 
 .card{
 height: 33rem;
@@ -50,7 +50,17 @@ postion:flex;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
 top: 10%;
-left: 12.5%;
+}
+
+.main-container{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.container{
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .social_icon span{

@@ -32,7 +32,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
 
             query=Post.query().order(-Post.amount_comments)
             print(query)
-            popular_posts=query.fetch(limit = 5)
+            popular_posts=query.fetch(limit = 6)
             print(popular_posts)
             params = {
                 "popularPost1": popular_posts[0],
@@ -40,6 +40,7 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                 "popularPost3": popular_posts[2],
                 "popularPost4": popular_posts[3],
                 "popularPost5": popular_posts[4],
+                "popularPost6": popular_posts[5],
                 "first_name": self.user.first_name,
                 "logged_in": True
             }

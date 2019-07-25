@@ -14,22 +14,23 @@
       <h1>SHOP FINDER</h1>
       <h2>A Community of Shoppers Finding One Item at a Time</h2>
     </section>
-    <section id = "outerWrap">
-        <div id = "navBar">
-          <a class = "navBar_options" href = "/">Home</a>
-          <a class = "navBar_options" href = "/allPosts">Explore</a>
-          <div>
-            <a class = "navBar_options" href = "/Logout">Log Out</a>
-          </div>
+    <!-- <section id = "outerWrap"> -->
+      <div id = "navBar">
+        <a class = "navBar_options" href = "/">Home</a>
+        <a class = "navBar_options" href = "/allPosts">Explore</a>
+        <div>
+          <a class = "navBar_options" href = "/Logout">Log Out</a>
         </div>
-        <!-- <div id = "PopularPosts"> -->
-          <img src={{popularPost1.create_post_photo_url }} alt="{{popularPost1.user_name}}'s post">
-          <img src={{popularPost2.create_post_photo_url }} alt="{{popularPost2.user_name}}'s post">
-          <img src={{popularPost3.create_post_photo_url }} alt="{{popularPost3.user_name}}'s post">
-          <img src={{popularPost4.create_post_photo_url}} alt="{{popularPost4.user_name}}'s post">
-          <img src={{popularPost5.create_post_photo_url }} alt="{{popularPost5.user_name}}'s post'">
-        <!-- </div> -->
-    </section>
+      </div>
+      <section id = "popularPhotos">
+        <img class = "popularPhotos" src={{popularPost1.create_post_photo_url }} alt="{{popularPost1.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost2.create_post_photo_url }} alt="{{popularPost2.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost3.create_post_photo_url }} alt="{{popularPost3.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost4.create_post_photo_url}} alt="{{popularPost4.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost5.create_post_photo_url }} alt="{{popularPost5.user_name}}'s post">
+        <img class = "popularPhotos" src={{popularPost6.create_post_photo_url }} alt="{{popularPost6.user_name}}'s post'">
+      </section>
+    <!-- </section> -->
     <h1>Search by Tag</h1>
     <form method="post" action = "/search-results">
       <input type="text" name="search" placeholder="Search...">

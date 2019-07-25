@@ -76,10 +76,13 @@
           </div>
           <div class="tags">
           <p>Tags:</p>
+          <ul class = "card-text" >
           {% for tag in post.tags %}
-            <p class = "card-text" style = "float:left"> {{ tag }}, </p>
+            <li class = "card-text" style = "float:left; list-style-type: none"> {{ tag }} </li>
           {% endfor %}
+          </ul>
           </div>
+          <br>
           <form method = "post" action = "/">
               <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
               <button class="btn btn-primary" onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>

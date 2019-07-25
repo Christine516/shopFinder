@@ -1,5 +1,5 @@
 #header {
-  background-color:#FAB8A7;
+  background-color:white;
   text-align: center;
   text-shadow:
 		-1px -1px 0 #000,
@@ -9,12 +9,12 @@
 }
 
 body {
-  background-color: #FFEDE8;
+  background-color: white;
 }
 
 h1 {
   font-size: 50px;
-  color: #635C56;
+  color: #A5A7DE;
   font-family: arial black;
 }
 
@@ -119,4 +119,24 @@ form{
   -webkit-column-count: 1;
   column-count:         1;
   }
+}
+
+.card-img-top {
+  border: #C6C4CC, solid, 5px;
+}
+
+.card {
+  margin-top: auto;
+  margin-bottom: auto;
+  align-content: center;
+  postion:flex;
+  width: 400px;
+  background-color: #C6C4CC !important;
+}
+
+.cardcontainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  grid-template-columns: auto;
 }

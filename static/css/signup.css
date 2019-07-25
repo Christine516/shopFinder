@@ -49,8 +49,8 @@ align-content: center;
 postion:flex;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
-top: 6rem;
-left: 8rem;
+top: 10%;
+left: 12.5%;
 }
 
 .social_icon span{

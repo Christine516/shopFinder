@@ -3,7 +3,8 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
     <script type="text/javascript" src="/static/js/trial.js" ></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="/static/css/home.css">
   </head>
   <body>
+
     <section id=header>
       <h1>SHOP FINDER</h1>
       <h2>A Community of Shoppers Finding One Item at a Time</h2>
@@ -79,11 +81,11 @@
           {% if post.comments != None %}
             {% for comment in post.comments %}
               <div>
-              <p>User:{{ comment.user_name }}</p>
-               <p>Likes:{{ comment.likes }} </p>
-               <p>{{ comment.content }} </p>
+              <p>User:{{ comment.get.user_name }}</p>
+               <p>Likes:{{ comment.get.likes }} </p>
+               <p>{{ comment.get.content }} </p>
                <!-- {% if comment != None %}
-                 {% for subcomment in comment.comments %}
+                 {% for subcomment in comment.get.comments %}
                    <div>
      `              <p>User:{{ subcomment.get.user_name }}</p>
                     <p>Likes:{{ subcomment.get.likes }} </p>
@@ -94,10 +96,12 @@
               </div>
             {% endfor %}
           {% endif %}
-          {% if user in post.users_liked %}
+          {% if user.username in post.users_liked %}
               <h1 class = "card-text">Likes:{{ post.likes }}</h1>
           {%  else %}
-             <button  class="btn btn-primary" id  = {{ post.key.id  }} onclick="LikePost({{ post.key.id }})" >Likes: {{ post.likes }} </button>
+             <form method = "post" action ="/">
+             <button type ="submit" class="btn btn-primary" id  = {{ post.key.id  }} onclick="LikePost({{ post.key.id }})" >Likes: {{ post.likes }} </button>
+              </form>
           {%  endif %}
       </div>
       {% endfor %}

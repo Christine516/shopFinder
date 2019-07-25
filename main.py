@@ -94,10 +94,12 @@ class LikePost(BaseHandler):
     def post(self):
         post_key = self.request.get("post")
         post = Post.get_by_id(int(post_key))
-        like = LikePost(self.user.key,)
+        like = Like(user_name = self.user.username)
+        like.put()
         post.likes_list.append(like)
         post.likes += 1
         post.put()
+        sleep(0.05)
         upload_url = blobstore.create_upload_url('/')
         query = Post.query(Post.user_name == self.user.username)
         all_posts = query.fetch()
@@ -120,7 +122,7 @@ class CommentPostPage(BaseHandler):
         post = Post.get_by_id(int(post_key))
         comment = Comment(user=self.user.key, user_name=self.user.username,content=comment_content)
         comment.put()
-        post.comments.append(comment)
+        post.comments.append(comment.key)
         post.amount_comments = len(post.comments)
         post.put()
         sleep(0.05)
@@ -133,9 +135,24 @@ class CommentPostPage(BaseHandler):
         }
         print(self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url)))
 
+class CreateProfilePage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
+    @user_required
+    def get(self):
+        params = {
+          'first_name': self.user.first_name,
+        }
+        upload_url = blobstore.create_upload_url('/Create')
+        self.response.out.write(template.render("templates/CreateProfile.html", params).format(upload_url))
 
-
-
+    def post(self):
+        upload = self.get_uploads()[0]
+        self.user.user_photo = upload.key()
+        brand = self.request.get('Brand')
+        gender = self.request.get('gender')
+        self.user.brand = brand
+        self.user.gender = gender
+        self.user.put()
+        self.redirect_to(self.uri_for('home'))
 
 # the app configuration section
 config = {
@@ -156,4 +173,5 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/search-results', handler=SearchResults, name='search-results'),
     webapp2.Route('/comment', handler=CommentPostPage, name='CommentPost'),
     webapp2.Route('/Like', handler=LikePost, name='LikePost'),
+    webapp2.Route('/Create', handler=CreateProfilePage, name='CreateProfile'),
 ], debug=True,config=config)

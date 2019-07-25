@@ -1,8 +1,8 @@
 from google.appengine.ext import ndb
 
 
-class LikePost(ndb.Model):
+class Like (ndb.Model):
     user_name = ndb.StringProperty()
+    likedpost = ndb.KeyProperty()
 
-class LikeComment (ndb.Model):
-    user_name = ndb.StringProperty()
+

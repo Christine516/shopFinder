@@ -131,4 +131,4 @@ class SignUpPage(BaseHandler):
             return self.render_template('signup.html')
         user = user_data[1]
         self.auth.set_session(self.auth.store.user_to_dict(user), remember=False)
-        self.redirect(self.uri_for('home'))
+        self.redirect(self.uri_for('CreateProfile'))

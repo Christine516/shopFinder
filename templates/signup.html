@@ -3,21 +3,74 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-  <link rel="stylesheet" href="/static/css/signup.css">
   </head>
+  <link rel="stylesheet" href="/static/css/signup.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <body>
     <section id=header>
       <h1>SHOP FINDER</h1>
       <h2>A Community of Shoppers Finding One Item at a Time</h2>
     </section>
-    <form id=createuser action="/sign_up" method="post">
-      <h1>Create User</h1>
-      First Name:<input type="text" name="First_Name" value="First Name"></br>
-      Last Name: <input type="text" name="Last_Name" value="Last Name"></br>
-      Username: <input type="text" name="username" value="username"></br>
-      Password: <input type="password" name="password" value="password"></br>
-                <input type="submit" value="Sign Up"></br>
-      <a href = "/Login"> Already have an account? Log in here! </a>
-    </form>
+    <header>
+      <div class="vidcontainer">
+      <div></div>
+      <video class "video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="/static/images/NYC-Traffic.mp4" type="video/mp4">
+      </video>
+      <div>
+        <div class="d-flex h-100 text-center align-items-center">
+        </div>
+      </div>
+      </div>
+    </header>
+    <div class="container">
+    	<div class="d-flex justify-content-center h-100">
+    		<div class="card">
+    			<div class="card-header">
+    				<h3>Sign Up</h3>
+    			</div>
+    			<div class="card-body">
+    				<form id=createuser action = "/sign_up" method = "post">
+              <div class="input-group form-group">
+    						<div class="input-group-prepend">
+    							<span class="input-group-text"><i class="fas fa-user"></i></span>
+    						</div>
+    						<input type="text" class="form-control" name = "First_Name" placeholder="First Name">
+    					</div>
+              <div class="input-group form-group">
+    						<div class="input-group-prepend">
+    							<span class="input-group-text"><i class="fas fa-user"></i></span>
+    						</div>
+    						<input type="text" class="form-control" name = "Last_Name" placeholder="Last Name">
+    					</div>
+    					<div class="input-group form-group">
+    						<div class="input-group-prepend">
+    							<span class="input-group-text"><i class="fas fa-user"></i></span>
+    						</div>
+    						<input type="text" class="form-control" name = "username" placeholder="username">
+    					</div>
+    					<div class="input-group form-group">
+    						<div class="input-group-prepend">
+    							<span class="input-group-text"><i class="fas fa-key"></i></span>
+    						</div>
+    						<input type="password" class="form-control" name = "password" placeholder="password">
+    					</div>
+    					<div class="form-group">
+    						<input type="submit" value="Login" class="btn float-right login_btn">
+    					</div>
+    				</form>
+    			</div>
+    			<div class="card-footer">
+    				<div class="d-flex justify-content-center links">
+    					Already have an account?<a href="/Login">Sign In</a>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
   </body>
 </html>

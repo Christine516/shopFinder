@@ -58,6 +58,18 @@ p {
   padding-right: 10px;
 }
 
+.homeSections{
+  text-align: center;
+}
+
+.forms{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+form{
+  text-align: center;
+}
 /* most popular posts style */
 #popularPhotos {
    /* Prevent vertical gaps */

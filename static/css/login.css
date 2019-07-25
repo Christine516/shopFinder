@@ -50,15 +50,15 @@ position:flex;
 width: 25rem;
 background-color: rgba(0,0,0,0.5) !important;
 top: 10%;
-left: 12.5%;
+/*left: 12.5%;*/
 }
 
-.main-container{
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 50px;
-}
+/*.main-container{*/
+/*display: flex;*/
+/*justify-content: center;*/
+/*align-items: center;*/
+/*margin-top: 50px;*/
+/*}*/
 .container{
 display: flex;
 justify-content: center;

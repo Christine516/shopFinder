@@ -91,6 +91,7 @@ class BaseHandler(webapp2.RequestHandler):
 class LogOutPage(BaseHandler):
     @user_required
     def get(self): #for a get request
+        print(self.user)
         self.user.logged_in = False
         self.auth.unset_session()
         self.redirect(self.uri_for('login'))
@@ -100,9 +101,13 @@ class LoginPage(BaseHandler):
         self.render_template('login.html')
 
     def get(self):
+        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        self.response.headers.add_header("Expires", "0")
         self.render_template('login.html')
 
     def post(self):
+        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        self.response.headers.add_header("Expires", "0")
         username = self.request.get('username')
         password = self.request.get('password')
         try:
@@ -112,11 +117,16 @@ class LoginPage(BaseHandler):
           self.render_template('login.html')
 
 
-class SignUpPage(BaseHandler):
+class SignUpPage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
     def get(self):
-        self.render_template('signup.html')
+        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        self.response.headers.add_header("Expires", "0")
+        upload_url = blobstore.create_upload_url('/sign_up')
+        self.response.out.write(template.render("templates/signup.html",[]).format(upload_url))
 
     def post(self):
+        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        self.response.headers.add_header("Expires", "0")
         first_name_var = self.request.get('first_name')
         last_name_var = self.request.get('last_name')
         username_var = self.request.get('username')
@@ -130,5 +140,13 @@ class SignUpPage(BaseHandler):
         if not user_data[0]:
             return self.render_template('signup.html')
         user = user_data[1]
+        params = {
+            'first_name': user.first_name,
+        }
         self.auth.set_session(self.auth.store.user_to_dict(user), remember=False)
-        self.redirect(self.uri_for('CreateProfile'))
+        upload = self.get_uploads()[0]
+        self.user.user_photo = upload.key()
+        self.user.put()
+        print(upload.key())
+        upload_url = blobstore.create_upload_url('/sign_up')
+        self.response.out.write(template.render("templates/home.html", params).format(upload_url))

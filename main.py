@@ -73,6 +73,8 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
         uploads = self.get_uploads()
         query = Post.query(Post.user == self.user.key)
         all_user_posts = query.fetch()
+        query=Post.query().order(-Post.amount_comments)
+        popular_posts=query.fetch(limit = 6)
         if uploads:
             upload = uploads[0]
             tags = [self.request.get("tag1"), self.request.get("tag2"), self.request.get("tag3")]
@@ -82,11 +84,22 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
             post.image_url = images.get_serving_url(post.image)
             post.put()
             all_user_posts.append(post)
-
-        template_vars = {
-            "all_posts":all_user_posts,
-            "user": self.user
-        }
+            if len(popular_posts) > 5:
+                template_vars = {
+                    "popularPost1": popular_posts[0],
+                    "popularPost2": popular_posts[1],
+                    "popularPost3": popular_posts[2],
+                    "popularPost4": popular_posts[3],
+                    "popularPost5": popular_posts[4],
+                    "popularPost6": popular_posts[5],
+                    "all_posts":all_user_posts,
+                    "user": self.user
+                }
+            else:
+                template_vars = {
+                    "all_posts":all_user_posts,
+                    "user": self.user
+                }
         upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
 class LikePost(BaseHandler):

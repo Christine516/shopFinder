@@ -86,10 +86,9 @@
           </form>
           {% if post.comments != None %}
             {% for comment in post.comments %}
-              <div>
+              <div class="comments">
               <p>User:{{ comment.get.user_name }}</p>
-               <p>Likes:{{ comment.get.likes }} </p>
-               <p>{{ comment.get.content }} </p>
+              <p>{{ comment.get.content }} </p>
                <!-- {% if comment != None %}
                  {% for subcomment in comment.get.comments %}
                    <div>
@@ -99,6 +98,7 @@
                    </div>
                  {% endfor %}
             {% endif %} -->
+              <p>Likes:{{ comment.get.likes }} </p>
               </div>
             {% endfor %}
           {% endif %}

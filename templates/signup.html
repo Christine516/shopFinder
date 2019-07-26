@@ -34,7 +34,7 @@
     				<h3>Sign Up</h3>
     			</div>
     			<div class="card-body">
-    				<form id=createuser action = "/sign_up" method = "post">
+    				<form id=createuser action = "{0}" method = "post" enctype="multipart/form-data">
               <div class="input-group form-group">
     						<div class="input-group-prepend">
     							<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -59,6 +59,20 @@
     						</div>
     						<input type="password" class="form-control" name = "password" placeholder="password">
     					</div>
+                        <div class="input-group form-group">
+    						<div class="input-group-prepend">
+    							<span class="input-group-text"><i class="fas fa-key"></i></span>
+    						</div>
+    						Upload Image:<input type="file" name="image" accept="image/gif, image/jpeg, image/png">
+    					</div>
+                        {% if bad_login %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>{{bad_response}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {% endif %}
     					<div class="form-group">
     						<input type="submit" value="Sign Up" class="btn float-right login_btn">
     					</div>

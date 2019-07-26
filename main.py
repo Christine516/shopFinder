@@ -28,50 +28,47 @@ the_jinja_env = jinja2.Environment(
 class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
     @user_required
     def get(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
-        if self.user is not None:
-            if self.user.logged_in:
-                query=Post.query().order(-Post.amount_comments)
-                print(query)
-                popular_posts=query.fetch(limit = 6)
-                print(popular_posts)
-                if len(popular_posts) > 5:
-                    query = Post.query(Post.user == self.user.key)
-                    all_user_posts = query.fetch()
-                    print(all_user_posts)
-                    params = {
-                        "popularPost1": popular_posts[0],
-                        "popularPost2": popular_posts[1],
-                        "popularPost3": popular_posts[2],
-                        "popularPost4": popular_posts[3],
-                        "popularPost5": popular_posts[4],
-                        "popularPost6": popular_posts[5],
-                        "first_name": self.user.first_name,
-                        "all_posts": all_user_posts,
-                        "user": self.user,
-                        "logged_in": True
-                    }
-                else:
-                    query = Post.query(Post.user == self.user.key)
-                    all_user_posts = query.fetch()
-                    print(all_user_posts)
-                    params = {
-                        "first_name": self.user.first_name,
-                        "all_posts": all_user_posts,
-                        "logged_in": True,
-                        "user": self.user
-                    }
-                upload_url = blobstore.create_upload_url('/')
-            self.response.out.write(template.render("templates/home.html", params).format(upload_url))
-        else:
-            self.render_template("login.html")
+        #
+        if self.user.logged_in:
+
+            query=Post.query().order(-Post.amount_comments)
+            print(query)
+            popular_posts=query.fetch(limit = 6)
+            print(popular_posts)
+            if len(popular_posts) > 5:
+                query = Post.query(Post.user == self.user.key)
+                all_user_posts = query.fetch()
+                print(all_user_posts)
+                params = {
+                    "popularPost1": popular_posts[0],
+                    "popularPost2": popular_posts[1],
+                    "popularPost3": popular_posts[2],
+                    "popularPost4": popular_posts[3],
+                    "popularPost5": popular_posts[4],
+                    "popularPost6": popular_posts[5],
+                    "first_name": self.user.first_name,
+                    "all_posts": all_user_posts,
+                    "user": self.user,
+                    "logged_in": True
+                }
+            else:
+                query = Post.query(Post.user == self.user.key)
+                all_user_posts = query.fetch()
+                print(all_user_posts)
+                params = {
+                    "first_name": self.user.first_name,
+                    "all_posts": all_user_posts,
+                    "logged_in": True,
+                    "user": self.user
+                }
+            upload_url = blobstore.create_upload_url('/')
+        self.response.out.write(template.render("templates/home.html", params).format(upload_url))
 
 
 
     def post(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires","0")
+        # self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        # self.response.headers.add_header("Expires","0")
         uploads = self.get_uploads()
         query = Post.query(Post.user == self.user.key)
         all_user_posts = query.fetch()
@@ -130,8 +127,6 @@ class aboutUsPage(BaseHandler):
 class LikePost(BaseHandler):
     @user_required
     def post(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
         post_key = self.request.get("post")
         post = Post.get_by_id(int(post_key))
         like = Like(user_name = self.user.username)
@@ -155,8 +150,6 @@ class LikePost(BaseHandler):
 class CommentPostPage(BaseHandler):
     @user_required
     def post(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
         comment_content = self.request.get("comment")
         print(comment_content)
         post_key = self.request.get("post")
@@ -180,8 +173,6 @@ class CommentPostPage(BaseHandler):
 class CreateProfilePage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
     @user_required
     def get(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
         params = {
           'first_name': self.user.first_name,
         }
@@ -189,8 +180,6 @@ class CreateProfilePage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
         self.response.out.write(template.render("templates/CreateProfile.html", params).format(upload_url))
 
     def post(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
         upload = self.get_uploads()[0]
         self.user.user_photo = upload.key()
         brand = self.request.get('Brand')

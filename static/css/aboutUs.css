@@ -1,3 +1,16 @@
-#ourPurpose{
-  background-image: soho.jpg;
+.ourPurpose{
+  font-size: 50px;
+  color: #A5A7DE;
+  font-family: arial black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+body{
+  background-color: #FFF7F5;
+}
+
+.bios {
+  display: inline-block;
+  width: 33%;
 }

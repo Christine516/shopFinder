@@ -65,6 +65,14 @@
     						</div>
     						Upload Image:<input type="file" name="image" accept="image/gif, image/jpeg, image/png">
     					</div>
+                        {% if bad_login %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>{{bad_response}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {% endif %}
     					<div class="form-group">
     						<input type="submit" value="Sign Up" class="btn float-right login_btn">
     					</div>

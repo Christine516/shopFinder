@@ -144,9 +144,12 @@ class SignUpPage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
             'first_name': user.first_name,
         }
         self.auth.set_session(self.auth.store.user_to_dict(user), remember=False)
-        upload = self.get_uploads()[0]
-        self.user.user_photo = upload.key()
-        self.user.put()
-        print(upload.key())
-        upload_url = blobstore.create_upload_url('/sign_up')
-        self.response.out.write(template.render("templates/home.html", params).format(upload_url))
+        if self.get_uploads() !=  None:
+            upload = self.get_uploads()[0]
+            self.user.user_photo = upload.key()
+            self.user.put()
+            print(upload.key())
+            upload_url = blobstore.create_upload_url('/sign_up')
+            self.response.out.write(template.render("templates/home.html", params).format(upload_url))
+        else:
+            self.render_template("home.html")

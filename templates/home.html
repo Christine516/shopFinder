@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
     <script type="text/javascript" src="/static/js/trial.js" ></script>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -19,7 +20,7 @@
 
     <section id=header>
       <h1>SHOP FINDER</h1>
-      <h2>A Community of Shoppers Finding One Item at a Time</h2>
+      <h2 id = "motto">A Community of Shoppers Finding One Item at a Time</h2>
     </section>
     <!-- <section id = "outerWrap"> -->
       <div id = "navBar">
@@ -41,8 +42,10 @@
     <div class=middle>
       <div>
         <h1 class = "homeSections">Search by Tag</h1>
+        <br>
         <div class = "forms">
           <form method="post" action = "/search-results">
+
             <input type="text" name="search" placeholder="Search...">
             <button type="submit">Search!</button>
           </form>
@@ -50,7 +53,8 @@
       </div>
       <div>
         <h1 class = "homeSections">New Post</h1>
-        <div>
+        <br>
+        <div id = "uploadImage">
           <form method="post" action = "{0}" enctype="multipart/form-data">
             <label>
               Upload Image
@@ -109,7 +113,13 @@
             {% endfor %}
           {% endif %}
           {% if user.username in post.users_liked %}
-              <h1 class = "card-text">Likes:{{ post.likes }}</h1>
+
+              <h1 class = "card-text">
+                <svg class="heart" viewBox="0 0 32 29.6">
+                  <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+	                 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                </svg>
+                :{{ post.likes }}</h1>
           {%  else %}
              <form method = "post" action ="/">
              <button type ="submit" class="btn btn-primary" id  = {{ post.key.id  }} onclick="LikePost({{ post.key.id }})" >Likes: {{ post.likes }} </button>

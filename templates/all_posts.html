@@ -23,8 +23,35 @@
         <img src = {{ post.image_url }}>
         {% for tag in post.tags %}
           <p> {{ tag }}</p>
-          {% endfor %}
         {% endfor %}
+        <form method = "post" action = "/">
+            <input id = "Input{{ post.key.id }}"type="text" name="Comment" value="Post Comment here">
+            <button class="btn btn-primary" onclick = "CommentPost({{ post.key.id }})" type="submit">Post!</button>
+        </form>
+        {% if post.comments != None %}
+          {% for commentKey in post.comments %}
+          {% set comment = commentKey.get() %}
+            <div class="comments">
+            <p>User:{{ comment.user_name }}</p>
+            <p>{{ comment.content }} </p>
+            <p>Likes:{{ comment.likes }} </p>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% if post.user_name in post.likes_list %}
+
+            <h1 class = "card-text">
+              <!-- <svg class="heart" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+              </svg> -->
+              :{{ post.likes }}</h1>
+        {%  else %}
+           <form method = "post" action ="/">
+           <button type ="submit" class="btn btn-primary" id  = {{ post.key.id  }} onclick="LikePost({{ post.key.id }})" >Likes: {{ post.likes }} </button>
+            </form>
+        {%  endif %}
+      {% endfor %}
     {% else %}
       <h1>Sorry, there are no posts at the moment.</h1>
     {% endif %}

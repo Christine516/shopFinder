@@ -151,15 +151,12 @@ form{
   margin-bottom: auto;
   align-content: center;
   position:flex;
-<<<<<<< HEAD
-  width: 400px;
-  background-color: #FFF1EA !important;
-=======
+
   width: 420px;
   border: 5px solid #9E8278;
   padding: 7px;
   background-color: #FFF7F5 !important;
->>>>>>> ec1c37776e1709a8ae76299c19855e3093dca578
+
 }
 
 .cardcontainer {
@@ -217,11 +214,7 @@ form{
 } */
 
 .pastpostscontainer{
-<<<<<<< HEAD
-  background-image: url(https://www.designbolts.com/wp-content/uploads/2013/02/Zebra-3D-Grey-Seamless-Pattern-For-Website-Background.jpg);
-=======
 background-color: #EAD1C9;
->>>>>>> ec1c37776e1709a8ae76299c19855e3093dca578
   /* background-size: cover; */
 }
 

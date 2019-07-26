@@ -99,15 +99,6 @@
               <div class="comments">
               <p>User:{{ comment.get.user_name }}</p>
               <p>{{ comment.get.content }} </p>
-               <!-- {% if comment != None %}
-                 {% for subcomment in comment.get.comments %}
-                   <div>
-     `              <p>User:{{ subcomment.get.user_name }}</p>
-                    <p>Likes:{{ subcomment.get.likes }} </p>
-                    <p>{{ subcomment.get.content }} </p>
-                   </div>
-                 {% endfor %}
-            {% endif %} -->
               <p>Likes:{{ comment.get.likes }} </p>
               </div>
             {% endfor %}

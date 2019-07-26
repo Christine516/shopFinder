@@ -221,5 +221,24 @@ background-color: #EAD1C9;
 }
 
 .middle {
-  background-color: #FFF7F5;
+  z-index:1;
+  position: absolute;
+  top: 50%;
+  left: 27%;
+  background-color:#EAD1C9;
+}
+
+.vidcontainer {
+height: 50%;
+position: relative;
+padding:0;
+margin:0;
+left: 0px;
+top: 0px;
+z-index: 0;
+overflow:hidden;
+}
+
+.videobox {
+  text-align: center;
 }

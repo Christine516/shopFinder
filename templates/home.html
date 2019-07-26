@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="/static/css/home.css">
   </head>
   <body>
-
     <section id=header>
       <h1>SHOP FINDER</h1>
       <h2 id = "motto">A Community of Shoppers Finding One Item at a Time</h2>
@@ -30,14 +29,27 @@
           <a class = "navBar_options" href = "/Logout">Log Out</a>
         </div>
       </div>
-      <section id = "popularPhotos">
+      <!-- <section id = "popularPhotos">
         <img class = "popularPhotos" src={{popularPost1.create_post_photo_url}} alt="{{popularPost1.user_name}}'s post">
         <img class = "popularPhotos" src={{popularPost2.create_post_photo_url}} alt="{{popularPost2.user_name}}'s post">
         <img class = "popularPhotos" src={{popularPost3.create_post_photo_url}} alt="{{popularPost3.user_name}}'s post">
         <img class = "popularPhotos" src={{popularPost4.create_post_photo_url}} alt="{{popularPost4.user_name}}'s post">
         <img class = "popularPhotos" src={{popularPost5.create_post_photo_url}} alt="{{popularPost5.user_name}}'s post">
         <img class = "popularPhotos" src={{popularPost6.create_post_photo_url}} alt="{{popularPost6.user_name}}'s post'">
-      </section>
+      </section> -->
+    <div class="videobox">
+    <header>
+      <div class="vidcontainer">
+      <div></div>
+        <video class "video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <source src="/static/images/NYC-Traffic.mp4" type="video/mp4">
+        </video>
+        <div>
+        <div class="d-flex h-100 text-center align-items-center">
+        </div>
+      </div>
+      </div>
+    </header>
     <div id = "searchAndPost">
     <div class=middle>
       <div>
@@ -71,6 +83,8 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
     <div class = pastpostscontainer>
     <h1 class = "homeSections">Past Posts</h1>
     <div class= "cardcontainer">

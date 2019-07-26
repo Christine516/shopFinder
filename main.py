@@ -121,6 +121,12 @@ class MainPage(BaseHandler, blobstore_handlers.BlobstoreUploadHandler):
                 }
         upload_url = blobstore.create_upload_url('/')
         self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url))
+class aboutUsPage(BaseHandler):
+    @user_required
+    def get(self):
+        upload_url = blobstore.create_upload_url('/aboutUs')
+        self.response.out.write(template.render("templates/aboutUs.html", {}).format(upload_url))
+
 class LikePost(BaseHandler):
     @user_required
     def post(self):
@@ -214,4 +220,5 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/comment', handler=CommentPostPage, name='CommentPost'),
     webapp2.Route('/Like', handler=LikePost, name='LikePost'),
     webapp2.Route('/Create', handler=CreateProfilePage, name='CreateProfile'),
+    webapp2.Route('/aboutUs', handler=aboutUsPage, name='aboutUs'),
 ], debug=True,config=config)

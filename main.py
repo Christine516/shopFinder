@@ -154,6 +154,7 @@ class CommentPostPage(BaseHandler):
         print(comment_content)
         post_key = self.request.get("post")
         print(post_key)
+        print("sophia")
         post = Post.get_by_id(int(post_key))
         comment = Comment(user=self.user.key, user_name=self.user.username,content=comment_content)
         comment.put()

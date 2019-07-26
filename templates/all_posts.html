@@ -45,14 +45,8 @@
           {% for commentKey in post.comments %}
           {% set comment = commentKey.get() %}
             <div class="comments">
-<<<<<<< HEAD
-            <p class = "commentsText">User:{{ comment.user_name }}</p>
-            <p class = "commentsText">{{ comment.content }} </p>
-            <p class = "commentsText">Likes:{{ comment.likes }} </p>
-=======
             <p>User:{{ comment.user_name }}</p>
             <p>{{ comment.content }} </p>
->>>>>>> 3bcf1661742c4a15705324ae1f1a400f02d75b6a
             </div>
           {% endfor %}
         {% endif %}

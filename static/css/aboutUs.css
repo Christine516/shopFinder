@@ -14,3 +14,7 @@ body{
   display: inline-block;
   width: 33%;
 }
+
+img {
+  width: 350px;
+}

@@ -32,7 +32,7 @@ h2{
 }
 
 p {
-  font-size: 25px;
+  font-size: 20px;
   color: #635C56;
   font-family: arial;
 }
@@ -86,6 +86,7 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+
 form{
   text-align: center;
 }
@@ -180,6 +181,8 @@ form{
 
 .comments {
   border:black solid 1px;
+  padding: 2px;
+  margin: 1px;
 }
 
 .card-title{
@@ -187,6 +190,7 @@ form{
   color: #A5A7DE;
   font-family: arial;
   margin-top: 12px;
+  letter-spacing: 1px;
 }
 
 .card-text{

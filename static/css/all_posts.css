@@ -27,7 +27,7 @@ h1 {
 }
 
 p {
-  font-size: 25px;
+  font-size: 20px;
   color: #635C56;
   font-family: arial;
 }
@@ -63,6 +63,9 @@ h2 {
   flex-grow: 1;
 }
 
+form{
+  text-align: center;
+}
 
 .navBar_options: hover{
   color: #708090;
@@ -74,8 +77,56 @@ h2 {
   padding-right: 10px;
 }
 
+.userbox {
+  border-bottom: black solid 1px;
+}
+
+.btn {
+  background-color: #A5A7DE;
+  border: none;
+}
+
+.btn-primary{
+  color: #fff;
+  background-color: none;
+  border-color: none;
+}
+
 .card-text{
   font-size: 30px;
   color: #A5A7DE;
   font-family: arial;
+}
+
+.card-title{
+  font-size: 25px;
+  color: #A5A7DE;
+  font-family: arial;
+  margin-top: 12px;
+  letter-spacing: 1px;
+}
+
+.cardcontainer {
+  display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 50px 15px;
+    vertical-align: top;
+    justify-items: center;
+}
+
+.card {
+  margin-top: auto;
+  margin-bottom: auto;
+  align-content: center;
+  position:flex;
+  width: 420px;
+  border: 5px solid #9E8278;
+  padding: 7px;
+  background-color: #FFF7F5 !important;
+}
+
+.comments {
+  border:black solid 1px;
+  padding: 2px;
+  margin: 1px;
 }

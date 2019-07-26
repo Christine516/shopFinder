@@ -60,7 +60,11 @@
     						<input type="password" class="form-control" name = "password" placeholder="password">
     					</div>
                         <div class="input-group form-group">
-    						<div class="input-group-prepend">
+    						<div id="uploadimage" class="input-group-prepend">
+    							<span class="input-group-text"><i class="fas fa-key"></i></span>
+    						Upload Image:<input type="file" name="image" accept="image/gif, image/jpeg, image/png">
+                </div>
+              </div>
                         {% if bad_login %}
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                           <strong>{{bad_response}}

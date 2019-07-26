@@ -10,6 +10,7 @@ the_jinja_env = jinja2.Environment(
     autoescape=True)
 
 class SearchResults(BaseHandler):
+    @user_required
     def post(self):
         results = []
         search_input=self.request.get("search")
@@ -22,6 +23,7 @@ class SearchResults(BaseHandler):
 
         template_vars = {
         "results":results,
+        "user": {"username": "xyz"}
         }
 
         template = the_jinja_env.get_template('templates/search-results.html')

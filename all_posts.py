@@ -12,6 +12,7 @@ from webapp2_extras.auth import InvalidPasswordError
 from google.appengine.api import images
 from Login import *
 from posts import Post
+from Comment import *
 
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -27,3 +28,24 @@ class allPosts(BaseHandler):
         }
         template = the_jinja_env.get_template('templates/all_posts.html')
         self.response.write(template.render(template_vars))
+
+    # def post(self):
+    #     comment_content = self.request.get("comment")
+    #     print(comment_content)
+    #     post = self.request.get("post")
+    #     # print(post_key)
+    #     # post = Post.get_by_id(int(post_key))
+    #     comment = Comment(user=self.user.key, user_name=self.user.username,content=comment_content)
+    #     comment.put()
+    #     post.comments.append(comment.key)
+    #     post.amount_comments = len(post.comments)
+    #     post.put()
+    #     sleep(0.05)
+    #     upload_url = blobstore.create_upload_url('/')
+    #     query = Post.query()
+    #     all_posts = query.fetch()
+    #     template_vars = {
+    #         "all_posts": all_posts,
+    #         "user":self.user
+    #     }
+    #     print(self.response.out.write(template.render("templates/all_posts.html", template_vars).format(upload_url)))

@@ -170,6 +170,7 @@ class CommentPostPage(BaseHandler):
         }
         print(self.response.out.write(template.render("templates/home.html", template_vars).format(upload_url)))
 
+
 class CreateProfilePage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
     @user_required
     def get(self):

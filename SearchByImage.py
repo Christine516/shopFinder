@@ -91,16 +91,17 @@ def detect_web_uri_by_url(image_url):
     urls =[]
     for response in img_dict['responses']:
         for entity in response['webDetection']['webEntities']:
-            CustomSearchParams = {"key": "AIzaSyAso_n3tH-AGcXaXHBt5YLaHSdV3XoXMvM",
-                                  "cx": "006239744188845988923:qyi6wbfdc_g", "q": entity['description'], "num": 6}
-            search_query = requests.get("https://www.googleapis.com/customsearch/v1", params=CustomSearchParams)
-            search_dict = json.loads(search_query.text)
-            entity_link_list = []
-            for search in search_dict['items']:
-                entity_link_list.append((entity['description'], search['link']))
+            if 'description' in entity.keys():
+                CustomSearchParams = {"key": "AIzaSyAso_n3tH-AGcXaXHBt5YLaHSdV3XoXMvM",
+                                      "cx": "006239744188845988923:qyi6wbfdc_g", "q": entity['description'], "num": 6}
+                search_query = requests.get("https://www.googleapis.com/customsearch/v1", params=CustomSearchParams)
+                search_dict = json.loads(search_query.text)
+                entity_link_list = []
+                for search in search_dict['items']:
+                    entity_link_list.append((entity['description'], search['link']))
                 list_of_entity_links.append(entity_link_list)
-            for pages in response['webDetection']['pagesWithMatchingImages']:
-                urls.append(pages['url'])
+        for pages in response['webDetection']['pagesWithMatchingImages']:
+            urls.append(pages['url'])
 
     return (list_of_entity_links,urls)
 

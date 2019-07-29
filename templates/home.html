@@ -15,6 +15,7 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
      <title> Home Page</title>
     <link rel="stylesheet" href="/static/css/home.css">
+
   </head>
   <body>
 
@@ -35,7 +36,7 @@
       <header>
         <div class="vidcontainer">
         <div></div>
-          <video class "video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <video class ="video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
             <source src="/static/images/NYC-Traffic.mp4" type="video/mp4">
           </video>
           <div>
@@ -61,23 +62,46 @@
         <h1 class = "homeSections">New Post</h1>
         <br>
         <div id = "uploadImage">
-          <form method="post" action = "{0}" enctype="multipart/form-data">
+          <form method="post" action = "/" enctype="multipart/form-data">
             <label>
               Upload Image
-              <input type="file" name="image" accept="image/gif, image/jpeg, image/png">
+              <input type="file" name="PostImage" accept="image/gif, image/jpeg, image/png">
             </label><br/>
             <label>
               Tags:
-              <input type="text" name="tag1" value="">
-              <input type="text" name="tag2" value="">
-              <input type="text" name="tag3" value="">
+              <input  type="text" name="tag1" value="">
+              <input  type="text" name="tag2" value="">
+              <input  type="text" name="tag3" value="">
             </label><br/>
             <button type="submit">Post!</button>
           </form>
         </div>
       </div>
+        <div>
+        <h1 class = "homeSections">Search By Image</h1>
+        <br>
+        <div id = "uploadImage">
+          <h3 >Search by File</h3>
+          <form method="post" action = "/SearchImage" enctype="multipart/form-data">
+              <label>
+              Image File:
+              <input type="file" name="SearchImage" accept="image/gif, image/jpeg, image/png">
+            </label><br/>
+            <button type="submit">Upload!</button>
+          </form>
+          <br>
+           <h3 >Search By Url</h3>
+          <form method="post" action="/SearchImage" >
+              <label>
+              Image URL:
+              <input type="text" name="SearchImageUrl" placeholder="Input Image url here">
+            </label><br/>
+            <button type="submit">Search!</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class = pastpostscontainer>
+    <div class = "pastpostscontainer">
     <h1 class = "homeSections">Past Posts</h1>
     <div class= "cardcontainer">
     {% if all_posts !=  None %}
@@ -85,13 +109,13 @@
         <div class = "card">
           <img class="card-img-top" style = "width:398px" src = {{ post.image_url }}>
           <div class="userbox">
-            <h1 class = "card-title">User: {{ post.user_name}} </h1>
+            <h1 class = "card-title">User: <span class="user-photo-container user-photo" style = "background-image:url({{ user_image_url }})"></span> </h1>
           </div>
           <div class="tags">
           <p>Tags:</p>
-          <ul class = "card-text" >
+          <ul class = "card-text " >
           {% for tag in post.tags %}
-            <span><li class = "card-text" style = "display:inline;float:left; list-style-type: none;padding-right:1rem"> #{{tag }} </li></span>
+            <span><li class = "card-text w3-tag w3-blue" style = "display:inline;float:left; list-style-type: none;margin-right:1rem"> #{{tag }} </li></span>
           {% endfor %}
           </ul>
           </div>
@@ -103,7 +127,7 @@
           {% if post.comments != None %}
             {% for comment in post.comments %}
               <div class="comments">
-              <p>User:{{ comment.get.user_name }}</p>
+              <p>User:<span class="user-photo-container user-photo" style = "background-image:url({{ comment.get.user.get.user_photo }})"></span></p>
               <p>{{ comment.get.content }} </p>
               <p>Likes:{{ comment.get.likes }} </p>
               </div>

@@ -153,7 +153,7 @@ form{
   margin-bottom: auto;
   align-content: center;
   position:flex;
-  width: 420px;
+  /*width: 420px;*/
   border: 5px solid #9E8278;
   padding: 7px;
   background-color: #FFF7F5 !important;
@@ -219,8 +219,12 @@ background-color: #EAD1C9;
   /* background-size: cover; */
 }
 
-.middle {
+.box {
   background-color: #FFF7F5;
+}
+.center{
+  text-align: center;
+  margin: 0 auto
 }
 
 #searchResults{

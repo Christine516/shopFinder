@@ -127,7 +127,7 @@
           {% if post.comments != None %}
             {% for comment in post.comments %}
               <div class="comments">
-              <p>User:<span class="user-photo-container user-photo" style = "background-image:url({{ comment.get.user.get.user_photo }})"></span></p>
+              <p>User<span class="user-photo-container user-photo" style = "background-image:url({{ comment.get.user.get.user_photo }})"></span></p>
               <p>{{ comment.get.content }} </p>
               <p>Likes:{{ comment.get.likes }} </p>
               </div>

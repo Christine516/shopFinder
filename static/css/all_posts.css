@@ -135,3 +135,22 @@ form{
   padding: 2px;
   margin: 1px;
 }
+
+#shopfindertext {
+  margin-top: 7px;
+  margin-bottom: 0px;
+  font-size: 50px;
+  color: #A5A7DE;
+  font-family: arial black;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.tagcolor {
+  background-color: #2196F3;
+  color: white;
+  margin: 3px;
+}

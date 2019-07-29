@@ -89,13 +89,12 @@ form{
 
 .btn-primary{
   color: #fff;
-  background-color: none;
+  background-color: #A5A7DE;
   border-color: none;
 }
 
 .card-text{
   font-size: 30px;
-  color: #A5A7DE;
   font-family: arial;
 }
 
@@ -125,6 +124,10 @@ form{
   border: 5px solid #9E8278;
   padding: 7px;
   background-color: #FFF7F5 !important;
+}
+
+.card-img-top {
+  border: #C6C4CC  solid 5px;
 }
 
 .comments {

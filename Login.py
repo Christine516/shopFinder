@@ -9,6 +9,8 @@ from google.appengine.api import images
 import webapp2
 import jinja2
 import os
+from Uploads import *
+
 
 def user_required(handler):
   """
@@ -101,13 +103,9 @@ class LoginPage(BaseHandler):
         self.render_template('login.html')
 
     def get(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
         self.render_template('login.html')
 
     def post(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
         username = self.request.get('username')
         password = self.request.get('password')
         try:
@@ -117,16 +115,11 @@ class LoginPage(BaseHandler):
           self.render_template('login.html')
 
 
-class SignUpPage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
+class SignUpPage(BaseHandler):
     def get(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
-        upload_url = blobstore.create_upload_url('/sign_up')
-        self.response.out.write(template.render("templates/signup.html",[]).format(upload_url))
+        self.render_template("signup.html")
 
     def post(self):
-        self.response.headers.add_header("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
-        self.response.headers.add_header("Expires", "0")
         first_name_var = self.request.get('first_name')
         last_name_var = self.request.get('last_name')
         username_var = self.request.get('username')
@@ -144,12 +137,10 @@ class SignUpPage(BaseHandler,blobstore_handlers.BlobstoreUploadHandler):
             'first_name': user.first_name,
         }
         self.auth.set_session(self.auth.store.user_to_dict(user), remember=False)
-        if self.get_uploads() !=  None:
-            upload = self.get_uploads()[0]
-            self.user.user_photo = upload.key()
+        if self.request.get('UserImage'):
+            uploaded_file = self.request.POST.get('UserImage')
+            self.user.user_photo = upload_file_helper(uploaded_file=uploaded_file)
             self.user.put()
-            print(upload.key())
-            upload_url = blobstore.create_upload_url('/sign_up')
-            self.response.out.write(template.render("templates/home.html", params).format(upload_url))
+            self.render_template("home.html",params)
         else:
-            self.render_template("home.html")
+            self.render_template("home.html",params)

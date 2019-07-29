@@ -8,7 +8,6 @@ from google.appengine.ext import ndb
 from google.appengine.api import images
 import webapp2
 
-
 class User(webapp2_extras.appengine.auth.models.User):
     username = ndb.StringProperty(required=True)
     logged_in = ndb.BooleanProperty()
@@ -16,11 +15,8 @@ class User(webapp2_extras.appengine.auth.models.User):
     last_name = ndb.StringProperty()
     brand = ndb.StringProperty()
     gender = ndb.StringProperty()
-    user_photo = ndb.BlobKeyProperty()
+    user_photo = ndb.StringProperty()
     # posts = ndb.KeyProperty(Post,repeated=True)
-
-    def create_user_photo_url(self):
-        return images.get_serving_url(self.user_photo) + "=s32"
 
     def set_password(self, raw_password):
         self.password = security.generate_password_hash(raw_password, length=12)

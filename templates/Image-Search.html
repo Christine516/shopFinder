@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Search Image</title>
+  </head>
+  <link rel="stylesheet" href="/static/css/search-results.css">
+  <body>
+    <section id=header>
+      <h1>SHOP FINDER</h1>
+      <h2 id="motto">A Community of Shoppers Finding One Item at a Time</h2>
+    </section>
+    <div id = "navBar">
+      <a class = "navBar_options" href = "/">Home</a>
+      <a class = "navBar_options" href = "/allPosts">Explore</a>
+      <div>
+        <a class = "navBar_options" href = "/Logout">Log Out</a>
+      </div>
+    </div>
+    <div class = "cardcontainer">
+        <h1>Possible Items:</h1>
+        {%  for entity_searches in search_contents %}
+            <div class="box">
+                <div class = "center">
+                   <h1> {{ entity_searches.0.0 }}</h1>
+
+                    <h3> Search Results</h3>
+                    {% for search in entity_searches %}
+                        <div class = "card">
+                            <div class = "userbox">
+                              <h4 class = "card-title">{{ search.0 }} </h4>
+                            </div>
+                            <h1 class="card-text"><a href = {{ search.1 }}>{{ search.1 }}</a></h1>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class = "cardcontainer">
+        <h1>Pages with Matching Images:</h1>
+        {%  for url in urls%}
+            <div class="box">
+                <div class = "center">
+                    <h1> <a href ={{ url }}>{{ url }}</a></h1>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+  </body>
+</html>

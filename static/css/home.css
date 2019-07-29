@@ -11,7 +11,19 @@
 body {
   background-color: white;
 }
-
+.user-photo-container{
+  -webkit-background-size: 32px 32px;
+    background-size: 32px 32px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: block;
+    margin: -1px;
+    overflow: hidden;
+    position: relative;
+    height: 32px;
+    width: 32px;
+    z-index: 0;
+}
 h1 {
   margin-top: 0px;
   font-size: 50px;
@@ -48,7 +60,7 @@ p {
   flex: 1;
   position: absolute;
   z-index: 1;
-  height:3%;
+  height:5%;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
@@ -144,7 +156,7 @@ form{
 }
 
 .card-img-top {
-  border: #C6C4CC, solid, 5px;
+  border: #C6C4CC  solid 5px;
 }
 
 .card {
@@ -225,6 +237,7 @@ background-color: #EAD1C9;
   position: absolute;
   top: 50%;
   left: 27%;
+  border-radius: 25px;
   background-color:#EAD1C9;
 }
 
@@ -241,4 +254,10 @@ overflow:hidden;
 
 .videobox {
   text-align: center;
+}
+
+.user-photo-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

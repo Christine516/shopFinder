@@ -166,7 +166,7 @@ class CommentPostPage(BaseHandler):
         post.comments.append(comment.key)
         post.amount_comments = len(post.comments)
         post.put()
-        sleep(0.05)
+        sleep(0.1)
         query = Post.query(Post.user_name == self.user.username)
         all_posts = query.fetch()
         template_vars = {
